@@ -3,9 +3,9 @@
 - [Welcome to the Intel Dev Cloud](#welcome-to-the-intel-dev-cloud)
   - [Sign Up](#sign-up)
   - [SSH Setup](#ssh-setup)
+  - [Head Node vs Compute Nodes](#head-node-vs-compute-nodes)
   - [Environment Setup](#environment-setup)
   - [Additional Software](#additional-software)
-  - [Head Node vs Compute Nodes](#head-node-vs-compute-nodes)
   - [Common Commands](#common-commands)
   - [Sample GPU Test Code](#sample-gpu-test-code)
   - [VSCode](#vscode)
@@ -188,7 +188,7 @@ If you setup the `.ssh/config` you can port forward to your local host by enteri
 ```bash
 ssh idc -L8001:localhost:8001
 ```
-
+Remember to exit the previous terminal session as one port forward and one VSCode session are your two connections to IDC.  In your local browser's address bar enter `http://localhost:800X`.
 ---  
 ## Jupyter<div id='jupyter'/>
 
