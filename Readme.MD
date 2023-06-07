@@ -35,20 +35,20 @@ Schedule and deploy the service with <a href="https://scheduler.cloud.intel.com/
 
 ssh-keygen is a tool for creating new authentication key pairs for SSH. Such key pairs are used for automating logins, single sign-on, and for authenticating hosts.  The IDC uses SSH Keys exclusively and you will never use a password for authentication.
 
-### RSA Public Key Creation
+### SSH Public Key Creation
 
 To create a key use the `ssh-keygen` utility found in your terminal application.  Windows powershell, Windows Subsytem for Linux (WSL) Terminal, Linux or MAC Terminal
 
 For WSL, Linux and MAC clients enter the below command
 ```bash
-ssh-keygen -f ~/.ssh/idc-key -t rsa -b 4096
+ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519_idc -C "you@email.com"
 ```
 For PowerShell enter:
 ```bash
- ssh-keygen -f C:\Users\YourID\.ssh\idc-key -t rsa -b 4096
- ```
+ssh-keygen -o -a 100 -t ed25519 -f C:\Users\YourID\.ssh\id_ed25519_idc
+```
 
-This will result in two files being generated: `idc-key` and `idc-key.pub` take care of these files as they are the private and public key pairs that will be tied to your IDC account.
+The passphrase is optional and you can hit enter for no pass phrase.  This will result in two files being generated: `id_ed25519_idc` and `id_ed25519_idc.pub` take care of these files as they are the private and public key pair that will be tied to your IDC account.
 
 ### SSH .config Client Setup
 
