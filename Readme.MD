@@ -86,7 +86,7 @@ In this configuration from the terminal future connections are established by en
 ```bash
 ssh idcbeta
 ```
-You are allowed up to 2 connections to the IDC.  
+You are allowed up to 4 connections to the IDC.  
 
 ---  
 ## Head Node vs Compute Nodes<div id='head-node-vs-compute-node'/>
