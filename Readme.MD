@@ -26,7 +26,12 @@
 
 The Intel Developer Cloud (IDC) trial is open to pre-qualified Intel customers and approved developers.  
 
-To get started: <a href="https://www.intel.com/content/www/us/en/secure/forms/developer/standard-registration.html?tgt=www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">Sign up for a standard Intel® Developer Zone account.</a>  You will need an RSA Public key, see the next section if you need more information on setting up your SSH authentication and client.
+To get started `external` users will need to use this link: <a href="https://www.intel.com/content/www/us/en/secure/forms/developer/standard-registration.html?tgt=www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">Sign up for a standard Intel® Developer Zone account.</a>  
+
+`Internal` users need to go <a href="https://www.intel.com/content/www/us/en/developer/tools/devcloud/services.html">here</a> and click <a href="https://scheduler.cloud.intel.com/">Sign In</a>.  From there pick `Scheduled access - Intel® Max Series GPU (PVC) on 4th Gen Intel® Xeon® processors - 1100 series (4x)`
+
+
+You will need a public key, see the next section if you need more information on setting up your SSH authentication and client.
 
 Schedule and deploy the service with <a href="https://scheduler.cloud.intel.com/">Intel® Developer Cloud management console.</a>
 
