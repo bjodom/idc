@@ -1,4 +1,4 @@
-# Welcome to the Intel Dev Cloud
+# Batch Mode Acces to PVC-Enabled SPR Systems in the Intel® Developer Cloud
 
 - [Welcome to the Intel Dev Cloud](#welcome-to-the-intel-dev-cloud)
   - [Sign Up](#sign-up)
@@ -8,7 +8,6 @@
   - [Additional Software](#additional-software)
   - [Common Commands](#common-commands)
   - [Sample GPU Test Code](#sample-gpu-test-code)
-  - [VSCode](#vscode)
   - [Jupyter](#jupyter)
   - [Some Example Scripts](#some-example-scripts)
   - [Where to get Support](#where-to-get-support)
@@ -18,13 +17,9 @@
 
 ## Sign Up<div id='sign-up'/>
 
-### Beta Trial Open Now  
-
 The Intel Developer Cloud (IDC) trial is open to prequalified Intel customers and approved developers.  
 
 To get started: <a href="https://www.intel.com/content/www/us/en/secure/forms/developer/standard-registration.html?tgt=www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">Sign up for a standard Intel® Developer Zone account.</a>  You will need an RSA Public key, see the next section if you need more information on setting up your SSH authentication and client.
-
-Explore the <a href="https://www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">service catalog.</a>
 
 Schedule and deploy the service with <a href="https://scheduler.cloud.intel.com/">Intel® Developer Cloud management console.</a>
 
@@ -65,6 +60,20 @@ ServerAliveCountMax 10
 StrictHostKeyChecking no # Frequent changes in the setup are taking place now, this will help reduce the knownhosts errors.
 UserKnownHostsFile=/dev/null
 ```
+### For Intel Employees:  Yours should look like below:
+
+```bash
+Host idcbeta
+Hostname idcbetabatch.eglb.intel.com
+User uXXXXXX #← THIS WAS ASSIGNED TO YOU AFTER SIGNING UP
+IdentityFile ~/.ssh/id_rsa_idc2
+ProxyCommand /usr/bin/nc -x proxy-dmz.intel.com:1080 %h %p
+ServerAliveInterval 60
+ServerAliveCountMax 10
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+```
+
 
 Ensure that `.ssh` has 600 privilege bits set  `-rw-------`  
 
@@ -75,7 +84,7 @@ Ensure that `.idc-key` and `idc-key.pub` have 400 privilege bits set `-r--------
 In this configuration from the terminal future connections are established by entering:
 
 ```bash
-ssh idc
+ssh idcbeta
 ```
 You are allowed up to 2 connections to the IDC.  
 
@@ -84,28 +93,77 @@ You are allowed up to 2 connections to the IDC.
 
 Upon initial connection to the IDC, you are connected to the head node.  This environment is a standard Ubuntu 22.04.02 LTS environment including `dev-essential` and the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit.html#gs.yh16wk">Intel oneAPI Basekit.</a>  This IDC utilizes <a href="https://slurm.schedmd.com/quickstart.html">SLURM</a> to manage job scheduling and resource management.   As a cluster workload manager, Slurm has three key functions. First, it allocates exclusive and/or non-exclusive access to resources (compute nodes) to users for some duration of time so they can perform work. Second, it provides a framework for starting, executing, and monitoring work (normally a parallel job) on the set of allocated nodes. Finally, it arbitrates contention for resources by managing a queue of pending work.
 
-The `head` node is a shared resource and typical development can be accomplished here.  There are `no accelerators` on the head node.  In addition, users are resource constrained via time, compute, memory and storage so for maximum peformance submit your job to the `compute node` which will run your code using all resources available and if your code can make use of `Intel(R) Data Center GPU Max 1100's` there are 4 in each `compute node`.  
+### Head Node
 
----  
+The `head` node is a login node and a method of authentication, no development work can occur on the `head node`.  There are `no accelerators` on the head node.  From the head node you can do file management, launch and manage SLURM jobs on the dedicated partition or launch an interactive job on one of the worker nodes. Your home directory is automatically mounted on the worker node when you connect.  It has a maximum of 20GB of storage.  There is a data directory where training and datasets can be stored.  `/home/common/data`
+
+### Interactive Worker Nodes
+
+#### Go interactive!
+
+```bash
+srun -p pvc-shared --pty bash
+source /opt/intel/oneapi/setvars.sh
+```
+
+The `interactive worker nodes` are resource constrained in that they are shared resources, so please be courteous.  Running code on the interactive session is just like being on a local session and you can run code without submitting to a queue.  There is at least one PVC in each worker node.  For maximum peformance submit your job to the `pvc partition` which will run your code using all resources available and if your code can make use of `Intel(R) Data Center GPU Max 1100's` there are 4 in each `non interactive node`.  Keep in mind this is a one at a time job, so you might have to wait awhile.
+
+--- 
 ## Environment Setup<div id='environment-setup'/>  
 
-Enter `source /opt/intel/oneapi/setvars.sh` and the development environment will be initialized.
+Enter `source /opt/intel/oneapi/setvars.sh` and the oneAPI development environment will be initialized.
 
-You can build and run code on the head node and if you find a library that you need is not installed please jump to the support section and open a ticket.  The request will be evaluated and you will be notified if the IDC can support your request.    
+Enter `conda env list` and activate the python environment of your choice.  Both Tensorflow and Pytorch environments have Jupyter installed.  If you don't like those environments create your own conda environment and customize to your liking.
 
+## Jupyter<div id='jupyter'/>
 
----  
+This will get better, there are security issues that need to be overcome in future versions of IDC, for now these are the overview of steps to run `Jupyter-lab`:
+
+1. Login to the head node.
+2. Launch an interactive session
+3. Find the IP of the interactive session.  
+4. Activate a conda environment that has jupyter-lab
+5. Launch jupyter-lab and take note of the port
+6. From another terminal port forward to your localhost
+7. Launch a browser and paste the long link from the other terminal tab
+8. Have fun with Jupyter-lab!
+
+The details, enter these from a terminal:
+
+```bash
+ssh idcbeta
+srun --pty bash
+echo $(ip a | grep -v -e "127.0.0.1" -e "inet6" | grep "inet" | awk {'print($2)}' | sed 's/\/.*//')
+conda activate pytorch_xpu
+jupyter-lab --ip 10.10.10.X
+```
+Take note of the IP and the port that jupyter launches on, it will look something like this:
+
+```bash
+http://10.10.10.8:8888/lab?token=9d83e1d8a0eb3ffed84fa3428aae01e592cab170a4119130
+``` 
+
+Your port will likely be different so replace `8888` with what was provided to you.  From a `new terminal` enter:
+
+```bash
+ssh idc -L 8888:10.10.10.X:8888
+```
+
+ Open your browser and enter `localhost:8888` or shift+click the link in the other terminal, or paste the token that was provided to you when you initialized the server as your password and use Jupyter lab as usual.
+
+---   
+
 ## Additional Software<div id='additional-software'/>
 
-It's possible to install additional software if regular user permissions are the only requirements.  For example to install <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/get-started-with-intel-distribution-for-python.html">the Intel® Distribution for Python</a> via <a href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh">miniconda</a> follow these steps:
+It's possible to install additional software if regular user permissions are the only requirements.  For example to install <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/get-started-with-intel-distribution-for-python.html">the Intel® Distribution for Python</a> follow these steps:  Miniconda is already installed, but you will be creating a virtual environment in your home directory.  
 
-1.  `Install miniconda`
+1.  `conda activate base`
 2.  `conda update conda`
 3.  `conda config --add channels intel`
 4.  `conda create -n idp intelpython3_core python=3.10`
 5.  `conda activate idp`
 
-Keep in mind you have 10GB of storage in your home directory for all software and data.
+Keep in mind you have 20GB of storage in your home directory for all software and data.
 
 ---  
 ## Common Slurm Commands<div id='common-commands'/>
@@ -158,56 +216,6 @@ srun a.out
 ```
 
 If successful it should return Device: Intel(R) Data Center GPU Max 1100.  Demonstrating that you successfully compiled a SYCL application and offloaded it's execution to a GPU on the compute node.
- 
----  
-
-## VSCode<div id='vscode'/>
-
-
-
-VSCode Server has been implemented on the IDC. Many plugins have been enabled providing a capable development IDE. From the root of your home directory enter:
-
-```bash
-code
-```
-You will be presented with a dialogue like the below:
-
-```bash
-1. Read all steps before proceeding
-2. Store the password and ssh command shown below
-    password:
-      xxxxxxxxxxxxxxxxxxxxxxxxxx
-    ssh command:
-      ssh uXXXXXX@idcbatch.eglb.intel.com -L 8001:localhost:8001
-3. Hit Enter here and type exit to end this SSH session
-4. Launch a new SSH session with stored ssh command
-5. Browse on local system http://localhost:8001
-```
-If you setup the `.ssh/config` you can port forward to your local host by entering the following:
-
-```bash
-ssh idc -L8001:localhost:8001
-```  
-Rember to exit the previous terminal session as one port forward and one VSCode session combined are your two connections to IDC.  In your local browser address bar enter `http://localhost:XXXX`  
-
----  
-## Jupyter<div id='jupyter'/>
-
-Interested in running Jupyterlab?  That is possible with some additional steps and because this is installed in your user directory you can choose any additional packages and configure Jupyterlab to your liking.  If you installed `miniconda` the only requirement follow these additional steps:
-
-1. `conda create --clone base --name jupyter`
-2. `conda activate jupyter`
-3. `conda install -c conda-forge jupyterlab`
-4. `jupyter lab --no-browser` <-- Make sure to start in ~/
-
-If all went well you will be provided a port and a token.  To login you will need to port forward the remote session to a local session.  Follow these steps which depend on you having setup your ssh/.config correctly.
-
-From a new terminal enter:
-
-```bash
-ssh idc -L 8888:localhost:8888
-```
-Your port will likely be different so replace `8888` with what was provided to you.  Open your browser and enter `localhost:8888` on the address bar.  Paste the token that was provided to you when you initialized the server as your password and use Jupyter lab as usual.
 
 ---  
 ## Some Example Scripts<div id='some-example-scripts'/>
@@ -215,8 +223,7 @@ Your port will likely be different so replace `8888` with what was provided to y
 ```bash
 #!/bin/bash
 #SBATCH -A <account> 
-#SBATCH -n 2
-#SBATCH --time=00:05:00 
+#SBATCH -p pvc
 #SBATCH --error=job.%J.err 
 #SBATCH --output=job.%J.out
 
@@ -226,10 +233,6 @@ srun ./my_a.out
 ---  
 ## Where to get Support<div id='where-to-get-support'/>
 
-Contact us <a href="https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482">here.</a>
+Contact us at `slurm-pvc-uat@intel.com` this is an internal email address.  
 
 ---  
-
-
-
-
