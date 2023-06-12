@@ -1,4 +1,4 @@
-# Batch Mode Acces to PVC-Enabled SPR Systems in the Intel® Developer Cloud
+# Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud
 
 - [Welcome to the Intel Dev Cloud](#welcome-to-the-intel-dev-cloud)
   - [Sign Up](#sign-up)
