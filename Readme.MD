@@ -1,14 +1,21 @@
 # Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud
 
-- [Welcome to the Intel Dev Cloud](#welcome-to-the-intel-dev-cloud)
+- [Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud](#batch-mode-access-to-pvc-enabled-spr-systems-in-the-intel-developer-cloud)
   - [Sign Up](#sign-up)
   - [SSH Setup](#ssh-setup)
+    - [ssh-keygen](#ssh-keygen)
+    - [SSH Public Key Creation](#ssh-public-key-creation)
+    - [SSH .config Client Setup](#ssh-config-client-setup)
+    - [For Intel Employees:  Yours should look like below:](#for-intel-employees--yours-should-look-like-below)
   - [Head Node vs Compute Nodes](#head-node-vs-compute-nodes)
+    - [Head Node](#head-node)
+    - [Interactive Worker Nodes](#interactive-worker-nodes)
+      - [Go interactive!](#go-interactive)
   - [Environment Setup](#environment-setup)
-  - [Additional Software](#additional-software)
-  - [Common Commands](#common-commands)
-  - [Sample GPU Test Code](#sample-gpu-test-code)
   - [Jupyter](#jupyter)
+  - [Additional Software](#additional-software)
+  - [Common Slurm Commands](#common-slurm-commands)
+  - [Sample GPU Test Code](#sample-gpu-test-code)
   - [Some Example Scripts](#some-example-scripts)
   - [Where to get Support](#where-to-get-support)
 
@@ -17,7 +24,7 @@
 
 ## Sign Up<div id='sign-up'/>
 
-The Intel Developer Cloud (IDC) trial is open to prequalified Intel customers and approved developers.  
+The Intel Developer Cloud (IDC) trial is open to pre-qualified Intel customers and approved developers.  
 
 To get started: <a href="https://www.intel.com/content/www/us/en/secure/forms/developer/standard-registration.html?tgt=www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">Sign up for a standard Intel® Developer Zone account.</a>  You will need an RSA Public key, see the next section if you need more information on setting up your SSH authentication and client.
 
@@ -32,7 +39,7 @@ ssh-keygen is a tool for creating new authentication key pairs for SSH. Such key
 
 ### SSH Public Key Creation
 
-To create a key use the `ssh-keygen` utility found in your terminal application.  Windows powershell, Windows Subsytem for Linux (WSL) Terminal, Linux or MAC Terminal
+To create a key use the `ssh-keygen` utility found in your terminal application.  Windows powershell, Windows Subsystem for Linux (WSL) Terminal, Linux or MAC Terminal
 
 For WSL, Linux and MAC clients enter the below command
 ```bash
@@ -91,7 +98,7 @@ You are allowed up to 4 connections to the IDC.
 ---  
 ## Head Node vs Compute Nodes<div id='head-node-vs-compute-node'/>
 
-Upon initial connection to the IDC, you are connected to the head node.  This environment is a standard Ubuntu 22.04.02 LTS environment including `dev-essential` and the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit.html#gs.yh16wk">Intel oneAPI Basekit.</a>  This IDC utilizes <a href="https://slurm.schedmd.com/quickstart.html">SLURM</a> to manage job scheduling and resource management.   As a cluster workload manager, Slurm has three key functions. First, it allocates exclusive and/or non-exclusive access to resources (compute nodes) to users for some duration of time so they can perform work. Second, it provides a framework for starting, executing, and monitoring work (normally a parallel job) on the set of allocated nodes. Finally, it arbitrates contention for resources by managing a queue of pending work.
+Upon initial connection to the IDC, you are connected to the head node.  This environment is a standard Ubuntu 22.04.02 LTS environment including `dev-essential` and the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit.html#gs.yh16wk">Intel oneAPI Basekit.</a>  This IDC utilizes <a href="https://slurm.schedmd.com/quickstart.html">SLURM</a> to manage job scheduling and resource management.   As a cluster workload manager, SLURM has three key functions. First, it allocates exclusive and/or non-exclusive access to resources (compute nodes) to users for some duration of time so they can perform work. Second, it provides a framework for starting, executing, and monitoring work (normally a parallel job) on the set of allocated nodes. Finally, it arbitrates contention for resources by managing a queue of pending work.
 
 ### Head Node
 
@@ -106,7 +113,7 @@ srun -p pvc-shared --pty bash
 source /opt/intel/oneapi/setvars.sh
 ```
 
-The `interactive worker nodes` are resource constrained in that they are shared resources, so please be courteous.  Running code on the interactive session is just like being on a local session and you can run code without submitting to a queue.  There is at least one PVC in each worker node.  For maximum peformance submit your job to the `pvc partition` which will run your code using all resources available and if your code can make use of `Intel(R) Data Center GPU Max 1100's` there are 4 in each `non interactive node`.  Keep in mind this is a one at a time job, so you might have to wait awhile.
+The `interactive worker nodes` are resource constrained in that they are shared resources, so please be courteous.  Running code on the interactive session is just like being on a local session and you can run code without submitting to a queue.  There is at least one PVC in each worker node.  For maximum performance submit your job to the `pvc partition` which will run your code using all resources available and if your code can make use of `Intel(R) Data Center GPU Max 1100's` there are 4 in each `non interactive node`.  Keep in mind this is a one at a time job, so you might have to wait awhile.
 
 --- 
 ## Environment Setup<div id='environment-setup'/>  
