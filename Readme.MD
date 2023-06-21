@@ -6,7 +6,8 @@
     - [ssh-keygen](#ssh-keygen)
     - [SSH Public Key Creation](#ssh-public-key-creation)
     - [SSH .config Client Setup](#ssh-config-client-setup)
-    - [For Intel Employees:  Yours should look like below:](#for-intel-employees--yours-should-look-like-below)
+    - [For Intel Employees:  Yours should look like below:  This is assuming you are using WSL or Linux.](#for-intel-employees--yours-should-look-like-below--this-is-assuming-you-are-using-wsl-or-linux)
+    - [For MingW64 users use below, line order matters.](#for-mingw64-users-use-below-line-order-matters)
   - [Head Node vs Compute Nodes](#head-node-vs-compute-nodes)
     - [Head Node](#head-node)
     - [Interactive Worker Nodes](#interactive-worker-nodes)
@@ -69,10 +70,10 @@ IdentityFile ~/.ssh/idc-key
 #ProxyCommand /usr/bin/nc -x YourProxy:XXXX %h %p # Uncomment if necessary
 ServerAliveInterval 60
 ServerAliveCountMax 10
-StrictHostKeyChecking no # Frequent changes in the setup are taking place now, this will help reduce the knownhosts errors.
+StrictHostKeyChecking no # Frequent changes in the setup are taking place now, this will help reduce the known hosts errors.
 UserKnownHostsFile=/dev/null
 ```
-### For Intel Employees:  Yours should look like below:
+### For Intel Employees:  Yours should look like below:  This is assuming you are using WSL or Linux.
 
 ```bash
 Host idcbeta
@@ -86,6 +87,19 @@ StrictHostKeyChecking no
 UserKnownHostsFile=/dev/null
 ```
 
+### For MingW64 users use below, line order matters.
+
+```bash
+ProxyCommand "C:\Program Files\Git\mingw64\bin\connect.exe" -S proxy-dmz.intel.com:1080 %h %p
+Host idcbeta
+Hostname idcbetabatch.eglb.intel.com
+User uXXXXXX #← THIS WAS ASSIGNED TO YOU AFTER SIGNING UP
+IdentityFile ~/.ssh/id_ed25519_idc
+ServerAliveInterval 60
+ServerAliveCountMax 10
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+```
 
 Ensure that `.ssh` has 600 privilege bits set  `-rw-------`  
 
