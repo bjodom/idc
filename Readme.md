@@ -1,4 +1,4 @@
-# Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud
+# Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud (IDC)
 
 - [Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud](#batch-mode-access-to-pvc-enabled-spr-systems-in-the-intel-developer-cloud)
   - [Sign Up](#sign-up)
@@ -257,8 +257,20 @@ srun ./my_a.out
 ```
 
 ---  
+## Extend your access<div id='extend-access'/>
+
+This is subject to change - here is where we are now:
+1. The system should auto-extend your account if you are using it during the last week of your allocated time. If it is idle in the days before it expires, your account will disappear and we cannot restore it (asking would be futile).
+2. In the final week, you can visit https://scheduler.cloud.intel.com and request an extension.  Ideally, a button will appear next ot the instance when you schedule the "View Instances" tab. Click it and fill in the form and submit. If nothing appears on the "View Instances" tab - then you need to go to the "Launch Instance" tab, check the box in frotn of "Scheduled access..." and click "Launch Instance." You should now see a button to request an extension, click it and follow instructions to submit a request.  If all else fails, please [request support - see instructions.](#where-to-get-support)
+
+---    
 ## Where to get Support<div id='where-to-get-support'/>
 
-Contact us at `slurm-pvc-uat@intel.com` this is an internal email address.  
+Contact us at slurm-pvc-uat@intel.com with feedback and requests.
 
 ---  
+## Revisit This Page for Tips<div id='revisit-often'/>
+
+We are enhancing, extending, and refining daily!  Please check back at https://github.com/bjodom/idc often for new tips, and inevitable changes as we get better together!
+
+---    
