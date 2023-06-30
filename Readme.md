@@ -1,4 +1,4 @@
-# Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud
+# Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud (IDC)
 
 - [Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud](#batch-mode-access-to-pvc-enabled-spr-systems-in-the-intel-developer-cloud)
   - [Sign Up](#sign-up)
