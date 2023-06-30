@@ -266,7 +266,7 @@ This is subject to change - here is where we are now:
 ---    
 ## Where to get Support<div id='where-to-get-support'/>
 
-Contact us at `slurm-pvc-uat@intel.com`.  
+Contact us at slurm-pvc-uat@intel.com with feedback and requests.
 
 ---  
 ## Revisit This Page for Tips<div id='revisit-often'/>
