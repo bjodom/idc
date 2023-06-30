@@ -269,7 +269,7 @@ This is subject to change - here is where we are now:
 Contact us at `slurm-pvc-uat@intel.com`.  
 
 ---  
-## Revisit This Page for Tipst<div id='revisit-often'/>
+## Revisit This Page for Tips<div id='revisit-often'/>
 
 We are enhancing, extending, and refining daily!  Please check back here often for new tips, and inevitable changes as we get better together!
 
