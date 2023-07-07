@@ -18,10 +18,10 @@
   - [Common Slurm Commands](#common-slurm-commands)
   - [Sample GPU Test Code](#sample-gpu-test-code)
   - [Some Example Scripts](#some-example-scripts)
-  - [Running MPI](mpi)
-  - [Extend your access](extend-access')
+  - [Running MPI](#mpi)
+  - [Extend your access](#extend-access)
   - [Where to get Support](#where-to-get-support)
-  - [Revisit This Page for Tips](revisit-often)
+  - [Revisit This Page for Tips](#revisit-often)
 
 ---  
 
