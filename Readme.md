@@ -18,7 +18,10 @@
   - [Common Slurm Commands](#common-slurm-commands)
   - [Sample GPU Test Code](#sample-gpu-test-code)
   - [Some Example Scripts](#some-example-scripts)
+  - [Running MPI](mpi)
+  - [Extend your access](extend-access')
   - [Where to get Support](#where-to-get-support)
+  - [Revisit This Page for Tips](revisit-often)
 
 ---  
 
@@ -268,6 +271,8 @@ mpirun -launcher fork -n 128 ./a.out
 ```
 
 These are probably the same (ssh and fork), but honestly we don't know.  They seem to run in the same time.  Let us know if you decide one is a superior choice.
+
+Visit the [MPI with SYCL example page](etc/MPI.md) for a quick example of how to get a SYCL Hello World from 40 different connections to GPUs (40 ranks).
 
 ---  
 ## Extend your access<div id='extend-access'/>
