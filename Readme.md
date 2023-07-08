@@ -18,7 +18,10 @@
   - [Common Slurm Commands](#common-slurm-commands)
   - [Sample GPU Test Code](#sample-gpu-test-code)
   - [Some Example Scripts](#some-example-scripts)
+  - [Running MPI](#mpi)
+  - [Extend your access](#extend-access)
   - [Where to get Support](#where-to-get-support)
+  - [Revisit This Page for Tips](#revisit-often)
 
 ---  
 
@@ -257,6 +260,21 @@ srun ./my_a.out
 ```
 
 ---  
+## Running MPI<div id='mpi'/>
+
+MPI is currently limited to a single node, and must be run without SLURM.  Since SLURM (srun) will be the default, you need to specify a different launcher using the -launcher option.
+
+For instance - either of these should work:
+```bash
+mpirun -launcher ssh -n 128 ./a.out
+mpirun -launcher fork -n 128 ./a.out
+```
+
+These are probably the same (ssh and fork), but honestly we don't know.  They seem to run in the same time.  Let us know if you decide one is a superior choice.
+
+Visit the [MPI with SYCL example page](etc/MPI.md) for a quick example of how to get a SYCL Hello World from 40 different connections to GPUs (40 ranks).
+
+---  
 ## Extend your access<div id='extend-access'/>
 
 This is subject to change - here is where we are now:
@@ -271,6 +289,6 @@ Contact us at slurm-pvc-uat@intel.com with feedback and requests.
 ---  
 ## Revisit This Page for Tips<div id='revisit-often'/>
 
-We are enhancing, extending, and refining daily!  Please check back at https://github.com/bjodom/idc often for new tips, and inevitable changes as we get better together!
+We are enhancing, extending, and refining daily!  Please check back at https://tinyurl.com/ReadmeIDC often for new tips, and inevitable changes as we get better together!
 
 ---    
