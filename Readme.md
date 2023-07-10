@@ -64,7 +64,7 @@ To make accessing the IDC convenient, it is recommended to setup a `.ssh\config`
 ```bash
 Host myidc #←YOU CAN CALL IT ANYTHING
 Hostname idcbetabatch.eglb.intel.com
-User uXXXXXX #← THIS WAS ASSIGNED TO YOU AFTER SIGNING UP
+User uXXXXXX #← Request "scheduled access" at https://scheduler.cloud.intel.com/#/systems" to get your user identifier.
 IdentityFile ~/.ssh/id_ed25519_idc
 #ProxyCommand /usr/bin/nc -x YourProxy:XXXX %h %p # Uncomment if necessary
 ServerAliveInterval 60
@@ -77,7 +77,7 @@ UserKnownHostsFile=/dev/null
 ```bash
 Host myidc
 Hostname idcbetabatch.eglb.intel.com
-User uXXXXXX #← THIS WAS ASSIGNED TO YOU AFTER SIGNING UP
+User uXXXXXX #← Request "scheduled access" at https://scheduler.cloud.intel.com/#/systems" to get your user identifier.
 IdentityFile ~/.ssh/id_ed25519_idc
 ProxyCommand /usr/bin/nc -x proxy-dmz.intel.com:1080 %h %p
 ServerAliveInterval 60
@@ -92,7 +92,7 @@ UserKnownHostsFile=/dev/null
 ProxyCommand "C:\Program Files\Git\mingw64\bin\connect.exe" -S proxy-dmz.intel.com:1080 %h %p
 Host myidc
 Hostname idcbetabatch.eglb.intel.com
-User uXXXXXX #← THIS WAS ASSIGNED TO YOU AFTER SIGNING UP
+User uXXXXXX #← Request "scheduled access" at https://scheduler.cloud.intel.com/#/systems" to get your user identifier.
 IdentityFile ~/.ssh/id_ed25519_idc
 ServerAliveInterval 60
 ServerAliveCountMax 10
