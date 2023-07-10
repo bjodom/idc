@@ -27,7 +27,15 @@
 
 ## Sign Up<div id='sign-up'/>
 
-The Intel Developer Cloud (IDC) trial is open to pre-qualified Intel customers, approved developers, and all Intel employees.
+The Intel Developer Cloud (IDC) trial is open to pre-qualified Intel customers, approved developers, and all Intel employees.  While we plan to formerly launch in the future, today you will already be gaining access to a powerful, highly functional, system, and nd one that can greatly benefit from you sharing your experinces so we can improve it.  In other words, it is not perfect and we would appreciate your help finding the rough edges.
+
+The picture below ([most update version is online(https://tinyurl/ReadmeIDC.html)]) illustrates how to think of this system at a high level.
+
+This is NOT a cluster, and it is not a system which will giv eyou root access.  The system is a shared system (please be respectful of others in not hogging resources unnecessarily), not a virtualized one.
+
+This IS a system with round-the-clock access to systems with Intel GPU Max series GPUs (PVCs).
+
+![High level view](https://github.com/jamesreinders/idc/assets/6556265/1a7a1392-1e0e-44d1-825f-b99d4ccb8458)
 
 To get started users will need a Intel® Developer Zone account (Intel employees also have an employee login option that is only usable internally (in the office, or externally via VPN)).  If you have a Intel® Developer Zone account already, you do not need a new one.  To get a Intel® Developer Zone account use this link: <a href="https://www.intel.com/content/www/us/en/secure/forms/developer/standard-registration.html?tgt=www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">Sign up for a standard Intel® Developer Zone account.</a>
 
