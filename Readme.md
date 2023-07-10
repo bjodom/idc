@@ -57,28 +57,28 @@ ssh-keygen -o -a 100 -t ed25519 -f C:\Users\YourID\.ssh\id_ed25519_idc
 
 The passphrase is optional and you can hit enter for no pass phrase.  This will result in two files being generated: `id_ed25519_idc` and `id_ed25519_idc.pub` take care of these files as they are the private and public key pair that will be tied to your IDC account.
 
-### SSH .config Client Setup
+### SSH .config Client Setup (assumes no proxy needed)
 
 To make accessing the IDC convenient, it is recommended to setup a `.ssh\config` file.
 
 ```bash
-Host idc #←YOU CAN CALL IT ANYTHING
+Host myidc #←YOU CAN CALL IT ANYTHING
 Hostname idcbetabatch.eglb.intel.com
 User uXXXXXX #← THIS WAS ASSIGNED TO YOU AFTER SIGNING UP
-IdentityFile ~/.ssh/idc-key
+IdentityFile ~/.ssh/id_ed25519_idc
 #ProxyCommand /usr/bin/nc -x YourProxy:XXXX %h %p # Uncomment if necessary
 ServerAliveInterval 60
 ServerAliveCountMax 10
 StrictHostKeyChecking no # Frequent changes in the setup are taking place now, this will help reduce the known hosts errors.
 UserKnownHostsFile=/dev/null
 ```
-### For Intel Employees:  Yours should look like below:  This is assuming you are using WSL or Linux.
+### For Intel Employees (due to proxy - other proxy users might take note):  Yours should look like below:  This is assuming you are using WSL or Linux.
 
 ```bash
-Host idcbeta
+Host myidc
 Hostname idcbetabatch.eglb.intel.com
 User uXXXXXX #← THIS WAS ASSIGNED TO YOU AFTER SIGNING UP
-IdentityFile ~/.ssh/id_rsa_idc2
+IdentityFile ~/.ssh/id_ed25519_idc
 ProxyCommand /usr/bin/nc -x proxy-dmz.intel.com:1080 %h %p
 ServerAliveInterval 60
 ServerAliveCountMax 10
@@ -90,7 +90,7 @@ UserKnownHostsFile=/dev/null
 
 ```bash
 ProxyCommand "C:\Program Files\Git\mingw64\bin\connect.exe" -S proxy-dmz.intel.com:1080 %h %p
-Host idcbeta
+Host myidc
 Hostname idcbetabatch.eglb.intel.com
 User uXXXXXX #← THIS WAS ASSIGNED TO YOU AFTER SIGNING UP
 IdentityFile ~/.ssh/id_ed25519_idc
@@ -104,14 +104,14 @@ Ensure that `.ssh` has 600 privilege bits set  `-rw-------`
 
 Ensure that `config` has 600 privilege bits set  `-rw-------`  
 
-Ensure that `.idc-key` and `idc-key.pub` have 400 privilege bits set `-r--------`  
+Ensure that `~/.ssh/id_ed25519_idc` and `~/.ssh/id_ed25519_idc.pub` have 400 privilege bits set `-r--------`  
 
 In this configuration from the terminal future connections are established by entering:
 
 ```bash
-ssh idcbeta
+ssh myidc
 ```
-You are allowed up to 4 connections to the IDC.  
+You are allowed up to 4 connections to the IDC.  If you lose a connection and rejoin, you may want to look for other lost login processes and kill them off (look with ps -aux).
 
 ---  
 ## Head Node vs Compute Nodes<div id='head-node-vs-compute-node'/>
@@ -156,7 +156,7 @@ This will get better, there are security issues that need to be overcome in futu
 The details, enter these from a terminal:
 
 ```bash
-ssh idcbeta
+ssh myidc
 srun --pty bash
 echo $(ip a | grep -v -e "127.0.0.1" -e "inet6" | grep "inet" | awk {'print($2)}' | sed 's/\/.*//')
 conda activate pytorch_xpu
@@ -171,7 +171,7 @@ http://10.10.10.8:8888/lab?token=9d83e1d8a0eb3ffed84fa3428aae01e592cab170a411913
 Your port will likely be different so replace `8888` with what was provided to you.  From a `new terminal` enter:
 
 ```bash
-ssh idc -L 8888:10.10.10.X:8888
+ssh myidc -L 8888:10.10.10.X:8888
 ```
 
  Open your browser and enter `localhost:8888` or shift+click the link in the other terminal, or paste the token that was provided to you when you initialized the server as your password and use Jupyter lab as usual.
