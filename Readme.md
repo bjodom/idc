@@ -14,11 +14,12 @@
       - [Go interactive!](#go-interactive)
   - [Environment Setup](#environment-setup)
   - [Jupyter](#jupyter)
-  - [Additional Software](#additional-software)
+   - [Additional Software](#additional-software)
   - [Common Slurm Commands](#common-slurm-commands)
   - [Sample GPU Test Code](#sample-gpu-test-code)
   - [Some Example Scripts](#some-example-scripts)
   - [Running MPI](#mpi)
+  - [If you use MobaXterm](#MobaXterm)
   - [Extend your access](#extend-access)
   - [Where to get Support](#where-to-get-support)
   - [Revisit This Page for Tips](#revisit-often)
@@ -277,6 +278,41 @@ mpirun -launcher fork -n 128 ./a.out
 These are probably the same (ssh and fork), but honestly we don't know.  They seem to run in the same time.  Let us know if you decide one is a superior choice.
 
 Visit the [MPI with SYCL example page](etc/MPI.md) for a quick example of how to get a SYCL Hello World from 40 different connections to GPUs (40 ranks).
+
+---
+## If you use MobaXterm<div id="MobaXterm">
+
+If you like using ModaXterm, here are notes from a user (thank you Yuning!) on the steps to make it fully work:
+
+Step 1: Get ip address  
+
+echo $(ip a | grep -v -e "127.0.0.1" -e "inet6" | grep "inet" | awk {'print($2)}' | sed 's/\/.*//') 
+
+example output: 10.10.10.8 
+
+Step2: Select the tunneling tab in MobaXterm
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/9d3f1d5b-8171-41c0-a7bd-8fa5bebc9592)
+
+Select your own private key 
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/0bd39143-398c-4977-a423-203d2b563b02)
+
+Description automatically generated 
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/162da683-30d1-43a7-a309-452aac529293)
+
+If you need a proxy (Intel employees do when on internal network or VPN) - set up proxy (Intel is “proxy-dmz.intel.com:1080”). 
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/1431243b-30b4-4e29-841f-dc8b4c959d45)
+
+Edit this tunnel 
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/06dd5c30-f4ea-401f-b147-3ead4d051fc8)
+
+Step3: Launch Jupyter notebook in MobaXterm (use the IP address 10.10.10.X you were assigned)
+
+jupyter-lab --ip 10.10.10.X --no-browser   
 
 ---  
 ## Extend your access<div id='extend-access'/>
