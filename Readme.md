@@ -327,6 +327,10 @@ This is subject to change - here is where we are now:
 
 Contact us with feedback and requests by clicking ["Submit Service Request"](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482) (goes to a small team) at [intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482).
 
+You may ALSO send an email to [ReadmeIDC@intel.com])mailto:ReadmeIDC@intel.com) until July 27 for anything.
+
+You may escalate to [ReadmeIDC@intel.com])mailto:ReadmeIDC@intel.com) if you do not get a response within a day, or a plan for resolution within 3 days.
+
 ---  
 ## Revisit This Page for Tips<div id='revisit-often'/>
 
