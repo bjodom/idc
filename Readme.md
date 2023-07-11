@@ -337,6 +337,12 @@ srun ./my_a.out
 ---  
 ## Running MPI<div id='mpi'/>
 
+When using MPI, you should set these environment variables (put in your ~/.bashrc to always have them):
+```bash
+export I_MPI_PORT_RANGE=50000:50500
+export btl_tcp_port_min_v4=1024
+```
+
 MPI is currently limited to a single node, and must be run without SLURM.  Since SLURM (srun) will be the default, you need to specify a different launcher using the -launcher option.
 
 For instance - either of these should work:
