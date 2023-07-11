@@ -13,8 +13,8 @@ Use https://github.com/bjodom/idc if you are blocked from the tinyurl redirect.
     - [ssh-keygen](#ssh-keygen)
     - [SSH Public Key Creation](#ssh-public-key-creation)
     - [SSH .config Client Setup](#ssh-config-client-setup)
-    - [For Intel Employees:  Yours should look like below:  This is assuming you are using WSL or Linux.](#for-intel-employees--yours-should-look-like-below--this-is-assuming-you-are-using-wsl-or-linux)
-    - [For MingW64 users use below, line order matters.](#for-mingw64-users-use-below-line-order-matters)
+    - [For Intel Employees](https://tinyurl.com/mw72yskf)
+    - [For MingW64 users use below, line order matters.](#mingw64)
   - [Head Node vs Compute Nodes](#head-node-vs-compute-nodes)
     - [Head Node](#head-node)
     - [Interactive Worker Nodes](#interactive-worker-nodes)
@@ -141,7 +141,7 @@ ssh-keygen -o -a 100 -t ed25519 -f C:\Users\YourID\.ssh\id_ed25519_idc
 
 The passphrase is optional and you can hit enter for no pass phrase.  This will result in two files being generated: `id_ed25519_idc` and `id_ed25519_idc.pub` take care of these files as they are the private and public key pair that will be tied to your IDC account.
 
-### SSH .config Client Setup (assumes no proxy needed)
+### SSH .config Client Setup (assumes no proxy needed)<div id='ssh-config-client-setup'>
 
 To make accessing the IDC convenient, it is recommended to setup a `.ssh\config` file.
 
@@ -156,11 +156,11 @@ ServerAliveCountMax 10
 StrictHostKeyChecking no # Frequent changes in the setup are taking place now, this will help reduce the known hosts errors.
 UserKnownHostsFile=/dev/null
 ```
-### For Intel Employees - you need PROXY setting for things to work on the VPN or in the office
+### For Intel Employees - you need PROXY settings to function from VPN or in the office
 
 Visit <a href="https://tinyurl.com/mw72yskf">Internal Wiki</a> for a run down of settings, which may differ based on your location.
 
-### For MingW64 users use below, line order matters.
+### For MingW64 users use below, line order matters.<div id='mingw64'>
 
 ```bash
 ProxyCommand "C:\Program Files\Git\mingw64\bin\connect.exe" -S proxy-dmz.intel.com:1080 %h %p
