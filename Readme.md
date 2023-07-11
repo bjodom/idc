@@ -156,19 +156,9 @@ ServerAliveCountMax 10
 StrictHostKeyChecking no # Frequent changes in the setup are taking place now, this will help reduce the known hosts errors.
 UserKnownHostsFile=/dev/null
 ```
-### For Intel Employees (due to proxy - other proxy users might take note):  Yours should look like below:  This is assuming you are using WSL or Linux.
+### For Intel Employees - you need PROXY setting for things to work on the VPN or in the office
 
-```bash
-Host myidc
-Hostname idcbetabatch.eglb.intel.com
-User uXXXXXX #← Request "scheduled access" at https://scheduler.cloud.intel.com/#/systems" to get your user identifier.
-IdentityFile ~/.ssh/id_ed25519_idc
-ProxyCommand /usr/bin/nc -x proxy-dmz.intel.com:1080 %h %p
-ServerAliveInterval 60
-ServerAliveCountMax 10
-StrictHostKeyChecking no
-UserKnownHostsFile=/dev/null
-```
+Visit <a href="https://tinyurl.com/mw72yskf>Internal Wiki</a> for a run down of settings, which may differ based on your location.
 
 ### For MingW64 users use below, line order matters.
 
