@@ -325,7 +325,7 @@ This is subject to change - here is where we are now:
 ## Where to get Support<div id='where-to-get-support'/>
 
 
-We have a small team ramping to respond quickly – simply go to the support address shown when you login and click ["Submit Service Request"](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482)
+We have a small team ramping to respond quickly: please go to the support address shown when you login and click ["Submit Service Request."](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482)
 
 We really hope you will contact us with feedback and requests by clicking ["Submit Service Request"](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482) (goes to a small team) at [intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482).
 
