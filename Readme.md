@@ -324,7 +324,8 @@ This is subject to change - here is where we are now:
 ---    
 ## Where to get Support<div id='where-to-get-support'/>
 
-Contact us at slurm-pvc-uat@intel.com with feedback and requests.
+
+Contact us with feedback and requests by clicking ["Submit Service Request"](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:23148) (goes to a small team) at [intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:23148).
 
 ---  
 ## Revisit This Page for Tips<div id='revisit-often'/>
