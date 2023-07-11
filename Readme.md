@@ -34,7 +34,7 @@
 
 The Intel Developer Cloud (IDC) trial is open to pre-qualified Intel customers, approved developers, and all Intel employees.  While we plan to formerly launch in the future, today you will already be gaining access to a powerful, highly functional, system, and nd one that can greatly benefit from you sharing your experinces so we can improve it.  In other words, it is not perfect and we would appreciate your help finding the rough edges.
 
-The picture below ([most update version is online(https://tinyurl/ReadmeIDC.html)]) illustrates how to think of this system at a high level.
+The picture below ([most update version is online](https://tinyurl/ReadmeIDC.html)) illustrates how to think of this system at a high level.
 
 This is NOT a cluster, and it is not a system which will giv eyou root access.  The system is a shared system (please be respectful of others in not hogging resources unnecessarily), not a virtualized one.
 
