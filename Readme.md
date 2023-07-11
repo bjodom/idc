@@ -22,6 +22,8 @@
   - [Some Example Scripts](#some-example-scripts)
   - [Running MPI](#mpi)
   - [If you use MobaXterm](#MobaXterm)
+  - [VTune, Advisor, PTrace - and other things you will not get](#securitynogoes)
+  - [Notable Known Issues](#issues)
   - [Extend your access](#extend-access)
   - [Where to get Support](#where-to-get-support)
   - [Revisit This Page for Tips](#revisit-often)
@@ -390,6 +392,29 @@ Step3: Launch Jupyter notebook in MobaXterm (use the IP address 10.10.10.X you w
 
 jupyter-lab --ip 10.10.10.X --no-browser   
 
+---
+## VTune, Advisor, PTrace - and other things you will not get<div id='securitynogoes'>
+
+We will not install or offer tools that give system wide insight, due to serious security concerns that exist when you have a very diverse community of users.
+This means that VTune, Advisor, and PTrace will not be installed or activated.
+We do plan to offer more isolated systems in the future which will host these highly useful tools.  We love them and it pains us to have to leave them off these systems.
+
+---
+## Notable Known Issues<div id='issues'>
+
+We really need your feedback - so keep them coming.
+
+Right now, here are a few things we know are not working:
+1.  emacs is on the head node, but missing on the other nodes (oops) - forcing the humiliation of using vim or nano for now (highest priority to fix in my book)
+2.  renew before your last day (for free) - because on your last day for an allocation you can log in, but things like SLURM will stop working
+3.  ulimits are forcing jobs to end within an hour, instead of running a full 4 hours as we intend
+4.  getpwuid() is broken on node - you may see error messages, or warning like "username unknown" - mostly harmless, other than a few apps which will refuse to run
+5.  many additional conda packages would be nice to have preinstalled (we will add more)
+6.  wanted to be installed by default: whole HPC toolkit (including Fortran)
+7.  node 01 has a nasty habit of losing track of its PVC cards - we are investigating
+8.  unzip needs installing - but gunzip is there as a capable alternative
+9.  ssh directory is owned by root to force use of web GUI to install ssh keys, but the web GUI is broken
+   
 ---  
 ## Extend your access<div id='extend-access'/>
 
