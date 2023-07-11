@@ -406,14 +406,14 @@ We really need your feedback - so keep them coming ([to submit feedback see sect
 
 Right now, here are a few things we know are not working:
 1.  emacs is on the head node, but missing on the other nodes (oops) - forcing the humiliation of using vim or nano for now (highest priority to fix in my book)
-2.  renew before your last day (for free) - because on your last day for an allocation you can log in, but things like SLURM will stop working
+2.  renew before your last day (free to do so - see the section below: [Extend your access](#extend-access)) - because on your last day for an allocation you can still log in but things like SLURM will stop working
 3.  ulimits are forcing jobs to end within an hour, instead of running a full 4 hours as we intend
-4.  getpwuid() is broken on node - you may see error messages, or warning like "username unknown" - mostly harmless, other than a few apps which will refuse to run
+4.  getpwuid() is broken on node - you may see error messages or warnings like "username unknown" - mostly harmless, other than a few apps which will refuse to run
 5.  many additional conda packages would be nice to have preinstalled (we will add more)
 6.  wanted to be installed by default: whole HPC toolkit (including Fortran)
 7.  node 01 has a nasty habit of losing track of its PVC cards - we are investigating
 8.  unzip needs installing - but gunzip is there as a capable alternative
-9.  ssh directory is owned by root to force use of web GUI to install ssh keys, but the web GUI is broken
+9.  ssh directory is owned by root to force use of web GUI to install ssh keys, but the web GUI is broken; clever users are working around it, others need to wait
    
 ---  
 ## Extend your access<div id='extend-access'/>
