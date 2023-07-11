@@ -158,7 +158,7 @@ UserKnownHostsFile=/dev/null
 ```
 ### For Intel Employees - you need PROXY setting for things to work on the VPN or in the office
 
-Visit <a href="https://tinyurl.com/mw72yskf>Internal Wiki</a> for a run down of settings, which may differ based on your location.
+Visit <a href="https://tinyurl.com/mw72yskf">Internal Wiki</a> for a run down of settings, which may differ based on your location.
 
 ### For MingW64 users use below, line order matters.
 
