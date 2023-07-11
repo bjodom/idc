@@ -402,7 +402,7 @@ We do plan to offer more isolated systems in the future which will host these hi
 ---
 ## Notable Known Issues<div id='issues'>
 
-We really need your feedback - so keep them coming.
+We really need your feedback - so keep them coming [See Wwere to get Support](#where-to-get-support).
 
 Right now, here are a few things we know are not working:
 1.  emacs is on the head node, but missing on the other nodes (oops) - forcing the humiliation of using vim or nano for now (highest priority to fix in my book)
