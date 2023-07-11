@@ -329,7 +329,7 @@ Contact us with feedback and requests by clicking ["Submit Service Request"](htt
 
 You may ALSO send an email to [ReadmeIDC@intel.com](mailto:ReadmeIDC@intel.com) until July 27 for anything.
 
-You may escalate to [ReadmeIDC@intel.com](mailto:ReadmeIDC@intel.com) if you do not get a response within a day, or a plan for resolution within 3 days.
+You may escalate to [ReadmeIDC@intel.com](mailto:ReadmeIDC@intel.com) if you do not get a response to your ticket within a day, or a plan for resolution within 3 days. Please reference your ticket numbers.
 
 ---  
 ## Revisit This Page for Tips<div id='revisit-often'/>
