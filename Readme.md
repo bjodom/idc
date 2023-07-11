@@ -1,3 +1,5 @@
+This Readme.MD can we read online (with drawings and pictures) at https://tinyurl.com/ReadmeIDC.
+
 # Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud (IDC)
 
 - [Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud](#batch-mode-access-to-pvc-enabled-spr-systems-in-the-intel-developer-cloud)
