@@ -3,7 +3,7 @@
 - [Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud](#batch-mode-access-to-pvc-enabled-spr-systems-in-the-intel-developer-cloud)
   - [Overview](#overview)
   - [Simple 1-2-3](#steps)
-  - [Sign Up](#sign-up)
+  - [Account Registration](#sign-up)
   - [SSH Setup](#ssh-setup)
     - [ssh-keygen](#ssh-keygen)
     - [SSH Public Key Creation](#ssh-public-key-creation)
@@ -42,22 +42,77 @@ This IS a system with round-the-clock access to systems with Intel GPU Max serie
 --- 
 ## Simple 1-2-3 steps <div id='steps'/>
 
-This Readme files has a lot of detail, but you should start by focusing on only three things.
+This Readme files has a lot of detail, but you should start by focusing on only three things:
 
-1. Get an account on Intel® Developer Zone.  If you have one, you do not need to create a new one.  If you need one, <a href="https://www.intel.com/content/www/us/en/secure/forms/developer/standard-registration.html?tgt=www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">sign up now</a> - it is free and instant.  Note: Intel employees also have an employee login option that is only usable internally (in the office, or externally via VPN)) - just look for the "Employee Signin" and click that instead of entering a username, etc.  If you are an Intel employee, you can create an account with any non-Intel email in order to sign in without being on the corporate network.
-2. Have an Public-Private Key that has ed25519 or RSA 4096 level of strength.  If you have one, you do not need to create a new one.  If you need one, follow [SSH Setup](#ssh-setup) instructions to create one (free and instant).  With your key, we recommend setting up your config file to make ssh easy (see [SSH .config Client Setup](#ssh-config-client-setup)).
-3. Create and use the service. Everyone can schedule and deploy the service with <a href="https://scheduler.cloud.intel.com/">Intel® Developer Cloud management console.</a>   Intel employees wanting to use their employee login, should get on the internal network (VPN) and go <a href="https://www.intel.com/content/www/us/en/developer/tools/devcloud/services.html">here</a> and click <a href="https://scheduler.cloud.intel.com/">Sign In</a>.  From there pick `Scheduled access - Intel® Max Series GPU (PVC) on 4th Gen Intel® Xeon® processors - 1100 series (4x)`
+1. Get an account on Intel® Developer Zone.  If you have one, you do not need to create a new one.  If you need one, <a href="https://www.intel.com/content/www/us/en/secure/forms/developer/standard-registration.html?tgt=www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">sign up now</a> - it is free and instant.  Note: Intel employees also have an employee login option that is only usable internally (in the office, or externally via VPN) - just look for the "Employee Sign In" and click that instead of entering a username, etc.  If you are an Intel employee, you can create an account with any non-Intel email in order to sign in without being on the corporate network.
+2. Have an Public-Private Authentication Key Pair that has ed25519 or RSA 4096 level of strength.  If you have one, you do not need to create a new one.  If you need one, follow [SSH Setup](#ssh-setup) instructions to create one (free and instant).  With your key, we recommend setting up your config file to make ssh easy (see [SSH .config Client Setup](#ssh-config-client-setup)).
+3. Create and use the service - it is free and instant (no need to enter any payment information - no credit card needed). Everyone can schedule and deploy the service with <a href="https://scheduler.cloud.intel.com/">Intel® Developer Cloud management console.</a>  From there pick `Scheduled access - Intel® Max Series GPU (PVC) on 4th Gen Intel® Xeon® processors - 1100 series (4x)`.  Intel employees wanting to use their employee login, should get on the internal network (VPN) and go <a href="https://www.intel.com/content/www/us/en/developer/tools/devcloud/services.html">here</a> and click <a href="https://scheduler.cloud.intel.com/">Sign In</a>. 
 
 These three steps will get you ON the system.  You'll find more instructions on setting up an environment, using Jupyter, and more later in this Readme.
 
 ---  
-## Sign Up<div id='sign-up'/>
+## Account Registration<div id='sign-up'/>
 
-To get started users will need a Intel® Developer Zone account (Intel employees also have an employee login option that is only usable internally (in the office, or externally via VPN)).  If you have a Intel® Developer Zone account already, you do not need a new one.  To get a Intel® Developer Zone account use this link: <a href="https://www.intel.com/content/www/us/en/secure/forms/developer/standard-registration.html?tgt=www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">Sign up for a standard Intel® Developer Zone account.</a>
+Here the process to get your account and access the service, described above, step-by-step.
 
-You will need a public key, see the next section if you need more information on setting up your SSH authentication and client.
+To access the batch service, external users must register for an Intel® Developer Cloud user account, via the Sign Up button on the Intel® Developer Cloud landing page (http://cloud.intel.com) and follow the steps in the Intel Cloud registration process.
+Intel employees can use their existing intel.com credentials to access the Intel® Developer Cloud portal and select the batch service via the "Employee Sign In" link on this same page.
 
-Everyone with a normal login can schedule and deploy the service with <a href="https://scheduler.cloud.intel.com/">Intel® Developer Cloud management console.</a>   Intel employees wanting to use their employee login, should get on the internal network (VPN) and go <a href="https://www.intel.com/content/www/us/en/developer/tools/devcloud/services.html">here</a> and click <a href="https://scheduler.cloud.intel.com/">Sign In</a>.  From there pick `Scheduled access - Intel® Max Series GPU (PVC) on 4th Gen Intel® Xeon® processors - 1100 series (4x)`
+![image](https://github.com/jamesreinders/idc/assets/6556265/519038c0-a13a-45b1-b7d2-5aadcfb50136)
+
+To register, press the ' Create the Account' button, as indicated:
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/0088d805-ab12-4181-ba26-0688faef0bc5)
+
+In the new registration screen, fill out the registration input fields and press "Next: Verify your email" button.
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/3f17e5ba-5645-44d4-a9b9-4107ab3e4d1d)
+
+A confirmation is sent to the email address that was entered in the registration screen. The email contains a single-use code, illustrated below.  You should get the email within minutes, please look in SPAM and JUNK folders if you do not see it promptly.
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/f260217f-c079-48fc-9e20-631bd71b3cc8)
+
+Enter the verification code in the field, as illustrated below and enter 'Create an account' button.
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/a48bdd36-05ef-47ee-8d97-f4ca9d27f67d)
+
+Next, we proceed to https://scheduler.cloud.intel.com/#/systems to go to the cloud management console.
+
+Here we need to make sure our SSH public key is in our profile.  Click the person/profile icon on the blue bar (NOT the one higher up on the same page).
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/0a42c806-a477-4364-a662-2fadc1e8b14e)
+
+Paste in your public key
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/2add9951-5b84-4c57-99cd-046bf3ab0a37)
+
+Click "Save Key" and then Select the "Instances" Tab.
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/c47ac23c-f762-4ab2-96f3-4f091981252e)
+
+Check the "Scheduled..." instance, and click "Launch Instance"
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/d1e99388-ae61-4a04-988f-d56b8a6fb710)
+
+Request access by clicking "Request Access."  Note: once you have an instance, this page would show you the information (username, etc.) in case you have forgotten it.
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/ed10f222-0ce9-4140-b4f1-2fa8e327924b)
+
+Enter your organization/affiliation/company and an explanation.  Once your explanation is 35 characters long, you can click "Request Access" and you will be granted access immediately.
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/7ea81251-ca28-4f82-96a8-a6edc5732e8d)
+
+Make note of you user ID, you will need it.
+
+![image](https://github.com/jamesreinders/idc/assets/6556265/b924f350-d486-44d3-9e5d-45350e3c153c)
+
+This is a good time to follow the [SSH .config Client Setup](#ssh-config-client-setup) instructions using your new user ID information.
+
+Please, please, please be sure your .ssh file permissions are set correctly.  Failure to do so, is the NUMBER ONE REASON for FAILURE to be able to ssh to the instance.
+
+Now you can ssh to the node.   "ssh myidc" (use the name you set in your ~/.ssh/config).
+
+From here, the most likely thing you want to do is "srun --pty bash" to open a live session on a 4th Gen Xeon system with Intel Max GPUs (PVCs) - where you can compile and run code (including single node multirank MPI programs), launch Jupyter notebooks, and more!
 
 ---
 ## SSH Setup<div id='ssh-setup'/>
