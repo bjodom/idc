@@ -411,8 +411,8 @@ Please read these carefully, many may solve obstacles you encounter.
    ulimit -t 14400 -s 32768 -n 2040
 ```
    A quirk of running under SLURM is that you can do this exactly once (raising from the default limits), and any additional ulimit commands cannot raise the prevailing limits (but they can lower) for that session (srun or sbatch).
+   
 2. Incoming only ssh/fstp/scp: Your ~/.ssh directory is owned by root.  Please leave it alone, changing it would not do what you hope.  You can use https in and out (e.g., git). However, ssh, sftp, scp, etc. are incoming only.  You can use the -L option on your ssh into the instance to connect your machine nicely into the instance.  If you cannot figure out how to get this working, or feel it is too limiting - reach out to us to [discuss - request support - see instructions.](#where-to-get-support)
-
 
 ---
 ## Notable Known Issues<div id='issues'>
