@@ -410,9 +410,10 @@ Please read these carefully, many may solve obstacles you encounter.
 ```bash
    ulimit -t 14400 -s 32768 -n 2040
 ```
-   A quirk of running under SLURM is that you can do this exactly once (raising from the default limits), and any additional ulimit commands cannot raise the prevailing limits (but they can lower) for that session (srun or sbatch).
+A quirk of running under SLURM is that you can do this exactly once (raising from the default limits), and any additional ulimit commands cannot raise the prevailing limits (but they can lower) for that session (srun or sbatch).
    
-2. Incoming only ssh/fstp/scp: Your ~/.ssh directory is owned by root.  Please leave it alone, changing it would not do what you hope.  You can use https in and out (e.g., git). However, ssh, sftp, scp, etc. are incoming only.  You can use the -L option on your ssh into the instance to connect your machine nicely into the instance.  If you cannot figure out how to get this working, or feel it is too limiting - reach out to us to [discuss - request support - see instructions.](#where-to-get-support)
+2. **Incoming only ssh/fstp/scp:** Your ~/.ssh directory is owned by root.  Please leave it alone, changing it would not do what you hope.  You can use https in and out (e.g., git). However, ssh, sftp, scp, etc. are incoming only.  You can use the -L option on your ssh into the instance to connect your machine nicely into the instance.  If you cannot figure out how to get this working, or feel it is too limiting - reach out to us to [discuss via request support - see instructions.](#where-to-get-support)
+3. **Do not forget /tmp:** Your account has (onlyh) 20G of persistent storage (available on all nodes, and persists between logins). For more high speed temporary space, try using /tmp. Of course, /tmp may be wiped clean by a reboot - it should survive on a node otherwise. If you need to reconnect, you may need to specify the node you need to attach to using an additional option on srun such as -w idc-beta-batch-pvc-node-XX (you need to know which node XX to specify).  If there is popular dataset, or tool, you want available globally - reach out to us to [make suggestion via request support - see instructions.](#where-to-get-support)
 
 ---
 ## Notable Known Issues<div id='issues'>
