@@ -22,7 +22,8 @@
   - [Some Example Scripts](#some-example-scripts)
   - [Running MPI](#mpi)
   - [If you use MobaXterm](#MobaXterm)
-  - [VTune, Advisor, PTrace - and other things you will not get](#securitynogoes)
+  - [VTune, Advisor, PTrace - later](#securitynogoes)
+  - [FAQs: Super Important Tips that may be non-obvious](#faq)
   - [Notable Known Issues](#issues)
   - [Extend your access](#extend-access)
   - [Where to get Support](#where-to-get-support)
@@ -393,28 +394,42 @@ Step3: Launch Jupyter notebook in MobaXterm (use the IP address 10.10.10.X you w
 jupyter-lab --ip 10.10.10.X --no-browser   
 
 ---
-## VTune, Advisor, PTrace - and other things you will not get<div id='securitynogoes'>
+## VTune, Advisor, PTrace - and other things you will get later<div id='securitynogoes'>
 
+VTune, Advisor, and PTrace will come later - not now.
 We will not install or offer tools that give system wide insight, due to serious security concerns that exist when you have a very diverse community of users.
 This means that VTune, Advisor, and PTrace will not be installed or activated.
 We do plan to offer more isolated systems in the future which will host these highly useful tools.  We love them and it pains us to have to leave them off these systems.
+
+---
+## FAQs: Super Important Tips that may be non-obvious<div id='faq'>
+
+Please read these carefully, many may solve obstacles you encounter.
+
+1. **raise ulimit:** You can raise your ulimit ONCE per SLURM session; if you do not you will be limited to 1 hour CPU time and a modest stack size.  You might just put ulimit commands in your ~/.bashrc - for instance:
+```bash
+   ulimit -t 14400 -s 32768 -n 2040
+```
+   A quirk of running under SLURM is that you can do this exactly once (raising from the default limits), and any additional ulimit commands cannot raise the prevailing limits (but they can lower) for that session (srun or sbatch).
+2. Incoming only ssh/fstp/scp: Your ~/.ssh directory is owned by root.  Please leave it alone, changing it would not do what you hope.  You can use https in and out (e.g., git). However, ssh, sftp, scp, etc. are incoming only.  You can use the -L option on your ssh into the instance to connect your machine nicely into the instance.  If you cannot figure out how to get this working, or feel it is too limiting - reach out to us to [discuss - request support - see instructions.](#where-to-get-support)
+
 
 ---
 ## Notable Known Issues<div id='issues'>
 
 We really need your feedback - so keep them coming ([to submit feedback see section below: Where to get Support](#where-to-get-support)).
 
+Please read kindly: I note "we plan to fix before August" below... and I mean it.  "Plan" means it is subject to change - and "before August" currently means about July 28.
+
 Right now, here are a few things we know are not working:
-1.  emacs is on the head node, but missing on the other nodes (oops) - forcing the humiliation of using vim or nano for now (highest priority to fix in my book)
+1.  emacs is on the head node, but missing on the other nodes (oops) - forcing the humiliation of using vim or nano for now (highest priority to fix in my book); we plan to fix before August
 2.  renew before your last day (free to do so - see the section below: [Extend your access](#extend-access)) - because on your last day for an allocation you can still log in but things like SLURM will stop working
-3.  ulimits are forcing jobs to end within an hour, instead of running a full 4 hours as we intend
-4.  getpwuid() is broken on nodes - you may see error messages or warnings like "username unknown" - mostly harmless, other than a few apps which will refuse to run
-5.  many additional conda packages would be nice to have preinstalled (we will add more)
-6.  wanted to be installed by default: whole HPC toolkit (including Fortran)
+3.  getpwuid() is broken on nodes - you may see error messages or warnings like "username unknown" - mostly harmless, other than a few apps which will refuse to run; we plan to fix before August
+5.  many additional conda packages would be nice to have preinstalled (we will add more); we plan to add before August
+6.  wanted to be installed by default: whole HPC toolkit (including Fortran); we plan to fix before August
 7.  node 01 has a nasty habit of losing track of its PVC cards - we are investigating
-8.  unzip needs installing - but gunzip is there as a capable alternative
-9.  ssh directory is owned by root to force use of web GUI to install ssh keys, but the web GUI is broken; clever users are working around it, others need to wait
-   
+8.  unzip needs installing - but gunzip is there as a capable alternative; we plan to fix before August
+
 ---  
 ## Extend your access<div id='extend-access'/>
 
