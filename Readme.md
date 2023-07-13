@@ -177,13 +177,17 @@ StrictHostKeyChecking no
 UserKnownHostsFile=/dev/null
 ```
 
-Ensure that `.ssh` has 600 privilege bits set  `-rw-------`  
+Ensure that permissions are correct when on Linux or MacOS - these are the commands to force that:
 
-Ensure that `config` has 600 privilege bits set  `-rw-------`  
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/config
+chmod 600 ~/.ssh/known_hosts*
+chmod 400 ~/.ssh/id*
+chmod 644 ~/.ssh/*.pub
+```
 
-Ensure that `~/.ssh/id_ed25519_idc` and `~/.ssh/id_ed25519_idc.pub` have 400 privilege bits set `-r--------`  
-
-In this configuration from the terminal future connections are established by entering:
+Once you are configured properly, from the terminal future connections are established by entering:
 
 ```bash
 ssh myidc
