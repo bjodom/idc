@@ -15,6 +15,7 @@ Use https://github.com/bjodom/idc if you are blocked from the tinyurl redirect.
     - [SSH .config Client Setup](#ssh-config-client-setup)
     - [For Intel Employees](https://tinyurl.com/mw72yskf)
     - [For MingW64 users use below, line order matters.](#mingw64)
+    - [SSH folder and file permissions](#ssh-permissions)
   - [Head Node vs Compute Nodes](#head-node-vs-compute-nodes)
     - [Head Node](#head-node)
     - [Interactive Worker Nodes](#interactive-worker-nodes)
@@ -84,6 +85,7 @@ Enter the verification code in the field, as illustrated below and enter 'Create
 
 ![image](https://github.com/jamesreinders/idc/assets/6556265/a48bdd36-05ef-47ee-8d97-f4ca9d27f67d)
 
+<div id='put-key-in'/>
 Next, we proceed to https://scheduler.cloud.intel.com/#/systems to go to the cloud management console.
 
 Here we need to make sure our SSH public key is in our profile.  Click the person/profile icon on the blue bar (NOT the one higher up on the same page).
@@ -176,6 +178,8 @@ ServerAliveCountMax 10
 StrictHostKeyChecking no
 UserKnownHostsFile=/dev/null
 ```
+
+### SSH folder and file permissions<div id='ssh-permissions'>
 
 Ensure that permissions are correct when on Linux or MacOS - these are the commands to force that:
 
@@ -414,7 +418,8 @@ A quirk of running under SLURM is that you can do this exactly once (raising fro
 2. **Incoming only ssh/fstp/scp:** Your ~/.ssh directory is owned by root.  Please leave it alone, changing it would not do what you hope.  You can use https in and out (e.g., git). However, ssh, sftp, scp, etc. are incoming only.  You can use the -L option on your ssh into the instance to connect your machine nicely into the instance.  If you cannot figure out how to get this working, or feel it is too limiting - reach out to us to [discuss via request support - see instructions.](#where-to-get-support)
 3. **Do not forget /tmp:** Your account has (onlyh) 20G of persistent storage (available on all nodes, and persists between logins). For more high speed temporary space, try using /tmp. Of course, /tmp may be wiped clean by a reboot - it should survive on a node otherwise. If you need to reconnect, you may need to specify the node you need to attach to using an additional option on srun such as -w idc-beta-batch-pvc-node-XX (you need to know which node XX to specify).  If there is popular dataset, or tool, you want available globally - reach out to us to [make suggestion via request support - see instructions.](#where-to-get-support)
 4. **Renew your access before it expires:** We cannot restore files if you let your access expire - they really are lost. We recommend you [Extend your access](#extend-access)) in the week preceeding expiration, and due to a bug (see next section) you really do not want to use it on the last day. Of course, even if it expires you can create another instance and recreate your environment/files.
-5. **Publish results:** We welcome you publishing results you get from using Intel Developer Cloud. Of course, if you see anything unexpected we would welcome [questions via request support - see instructions.](#where-to-get-support). We enjoy seeing mention if you enjoyed using the Intel Developer Cloud, and we encourage you to use the exclusive queue to get performance numbers without others on the system you are running upon. The systems with PCIe cards are 1100 (single tile) GPUs, and we will eventually also have 1550 (dual tile) GPUs. Noting which model you used is encouraged too.
+5. **If your ssh fails** the two most common causes are: (a) incorrect ssh folder and file permissions, (b) being out of sync with the instance.  For the first (a), refer to [SSH folder and file permissions](#ssh-permissions). For the latter (b), go to https://scheduler.cloud.intel.com ([click here to see the screenshots on how to do](#put-key-in)) and put your public key in your profile (to be sure it matches the one you are using on your systme) and then launch a new instance.
+6. **Publish results:** We welcome you publishing results you get from using Intel Developer Cloud. Of course, if you see anything unexpected we would welcome [questions via request support - see instructions.](#where-to-get-support). We enjoy seeing mention if you enjoyed using the Intel Developer Cloud, and we encourage you to use the exclusive queue to get performance numbers without others on the system you are running upon. The systems with PCIe cards are 1100 (single tile) GPUs, and we will eventually also have 1550 (dual tile) GPUs. Noting which model you used is encouraged too.
 
 ---
 ## Notable Known Issues<div id='issues'>
