@@ -435,7 +435,11 @@ Please read these carefully, many may solve obstacles you encounter.
 
 1. **raise ulimit:** You can raise your ulimit ONCE per SLURM session; if you do not you will be limited to 1 hour CPU time and a modest stack size.  You might just put ulimit commands in your ~/.bashrc - for instance:
 ```bash
-   ulimit -t 14400 -s 32768 -n 2040
+ulimit -t 90000 2>/dev/null
+ulimit -s 32768 2>/dev/null
+ulimit -n 4000 2>/dev/null
+ulimit -p 4000 2>/dev/null
+ulimit -m unlimited 2>/dev/null
 ```
 A quirk of running under SLURM is that you can do this exactly once (raising from the default limits), and any additional ulimit commands cannot raise the prevailing limits (but they can lower) for that session (srun or sbatch).
    
