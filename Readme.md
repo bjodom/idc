@@ -461,7 +461,7 @@ Right now, here are a few things we know are not working:
 
 Recently resolved:
 1.  **unzip** is on the systems now
-2.  **HPC toolkit **is on the systems now (including Fortran)
+2.  **HPC toolkit** is on the systems now (including Fortran)
 
 ---  
 ## Extend your access<div id='extend-access'/>
