@@ -21,6 +21,7 @@ Use https://github.com/bjodom/idc if you are blocked from the tinyurl redirect.
     - [Interactive Worker Nodes](#interactive-worker-nodes)
       - [Go interactive!](#go-interactive)
   - [Environment Setup](#environment-setup)
+  - [Verify it works / Troubleshoot](#troubleshoot)
   - [Jupyter](#jupyter)
    - [Additional Software](#additional-software)
   - [Common Slurm Commands](#common-slurm-commands)
@@ -225,6 +226,29 @@ Enter `source /opt/intel/oneapi/setvars.sh` and the oneAPI development environme
 
 Enter `conda env list` and activate the python environment of your choice.  Both Tensorflow and Pytorch environments have Jupyter installed.  If you don't like those environments create your own conda environment and customize to your liking.
 
+---
+## Verify it works / Troubleshoot<div id='troubleshoot'>
+
+Please verify that your environment works at this point enough to "see" the PVC (GPUs).  If you cannot, there is little point in doing more until we fix it so you *can* see the GPUs.
+
+Here are the commands you should have done already to reach a node with GPUs, plus three more.  The first command is on your systen. The second command is on the head node. The last three commands will be on an a node that has PVC cards.  The output of these commands see you do have access to the GPU cards, and if not give us a hint on why not.
+
+```bash
+ssh myidc
+srun --pty bash
+groups
+source /opt/intel/oneapi/setvars.sh
+sycl-ls
+```
+
+The output of *sycl-ls* should show multiple lines mentioning *Data Center GPU Max*.  If this is true, you have successfuly confirmed that you have access to GPUs.  Proceed to additional steps - no further testing is needed.
+
+If you do not see *Data Center GPU Max* in your *sycl-ls* output, then we need to figure out why so you can report the right issues to support.
+
+First, check the output of the 'groups' command. The output is a list (on one line, no commas between the names) of groups your user ID is in.  One of those names needs to be **render**.  If it is not, stop at this point and send a note to support which mentions your actual user ID something like this: "My user *uxxxxxx* is not a member of group *render* - please correct this."  To submit this see [Where to get Support](#where-to-get-support).
+
+Second, for a variety of reasons some nodes have a nasty habit of losing track of its PVC cards - we are investigating and improving things daily (this is a *beta* after all). If you issues with nodes where PVC cards disappear (to the OS), proven by *sycl-ls* not listing them, then please let us know (see [Where to get Support](#where-to-get-support)).  Also, feel free to try other nodes (from head node, use "srun -p pvc-shared -w idc-beta-batch-pvc-node-05 --pty bash" to force yourself onto node 05 (change to try other nodes). You can see what nodes are online with "sinfo -al" and once you are on a node you can see if the cards (Intel(R) Data Center GPU Max) are by running "sycl-ls" (after you source setvars of course).
+ 
 ## Jupyter<div id='jupyter'/>
 
 This will get better, there are security issues that need to be overcome in future versions of IDC, for now these are the overview of steps to run `Jupyter-lab`:
@@ -429,15 +453,15 @@ We really need your feedback - so keep them coming ([to submit feedback see sect
 Please read kindly: I note "we plan to fix before August" below... and I mean it.  "Plan" means it is subject to change - and "before August" currently means about July 28.
 
 Right now, here are a few things we know are not working:
-1.  emacs is on the head node, but missing on the other nodes (oops) - forcing the humiliation of using vim or nano for now (highest priority to fix in my book); we plan to fix before August
-2.  renew before your last day (free to do so - see the section below: [Extend your access](#extend-access)) - because on your last day for an allocation you can still log in but things like SLURM will stop working
-3.  getpwuid() is broken on nodes - you may see error messages or warnings like "username unknown" - mostly harmless, other than a few apps which will refuse to run; we plan to fix before August
-4.  many additional conda packages would be nice to have preinstalled (we will add more); we plan to add before August
-5.  some nodes have a nasty habit of losing track of its PVC cards - we are investigating - if you issues with nodes where PVC cards disappear (to the OS) - let us know, and feel free to try other nodes (from head node, use "srun -p pvc-shared -w idc-beta-batch-pvc-node-05 --pty bash" to force yourself onto node 05 (change to try other nodes). You can see what nodes are online with "sinfo -al" and once you are on a node you can see if the cards (Intel(R) Data Center GPU Max) are by running "sycl-ls" (after you source setvars of course).
+1.  **emacs** is on the head node, but missing on the other nodes (oops) - forcing the humiliation of using vim or nano for now (highest priority to fix in my book); we plan to fix before August
+2.  **renew before your last day** (free to do so - see the section below: [Extend your access](#extend-access)) - because on your last day for an allocation you can still log in but things like SLURM will stop working
+3.  **getpwuid()** is broken on nodes - you may see error messages or warnings like "username unknown" - mostly harmless, other than a few apps which will refuse to run; we plan to fix before August
+4.  **many additional conda packages** would be nice to have preinstalled (we will add more); we plan to add before August
+5.  **cannot use/see PVC** - please read [Troubleshooting](#troubleshoot) - we see several reasons pop up that users cannot access the GPU (PVC) - start with the [Verify it works / Troubleshoot](#troubleshoot) to see if it is a configuration issue, or something else - yes, some nodes have a nasty habit of losing track of its PVC cards - we are investigating - if you issues with nodes where PVC cards disappear (to the OS) - let us know, and feel free to try other nodes (from head node, use "srun -p pvc-shared -w idc-beta-batch-pvc-node-05 --pty bash" to force yourself onto node 05 (change to try other nodes). You can see what nodes are online with "sinfo -al" and once you are on a node you can see if the cards (Intel(R) Data Center GPU Max) are by running "sycl-ls" (after you source setvars of course).
 
 Recently resolved:
-1.  unzip is on the systems now
-2.  HPC toolkit is on the systems now (including Fortran)
+1.  **unzip** is on the systems now
+2.  **HPC toolkit **is on the systems now (including Fortran)
 
 ---  
 ## Extend your access<div id='extend-access'/>
