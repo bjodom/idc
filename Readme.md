@@ -432,10 +432,12 @@ Right now, here are a few things we know are not working:
 1.  emacs is on the head node, but missing on the other nodes (oops) - forcing the humiliation of using vim or nano for now (highest priority to fix in my book); we plan to fix before August
 2.  renew before your last day (free to do so - see the section below: [Extend your access](#extend-access)) - because on your last day for an allocation you can still log in but things like SLURM will stop working
 3.  getpwuid() is broken on nodes - you may see error messages or warnings like "username unknown" - mostly harmless, other than a few apps which will refuse to run; we plan to fix before August
-5.  many additional conda packages would be nice to have preinstalled (we will add more); we plan to add before August
-6.  wanted to be installed by default: whole HPC toolkit (including Fortran); we plan to fix before August
-7.  node 01 has a nasty habit of losing track of its PVC cards - we are investigating
-8.  unzip needs installing - but gunzip is there as a capable alternative; we plan to fix before August
+4.  many additional conda packages would be nice to have preinstalled (we will add more); we plan to add before August
+5.  some nodes have a nasty habit of losing track of its PVC cards - we are investigating - if you issues with nodes where PVC cards disappear (to the OS) - let us know, and feel free to try other nodes (from head node, use "srun -p pvc-shared -w idc-beta-batch-pvc-node-05 --pty bash" to force yourself onto node 05 (change to try other nodes). You can see what nodes are online with "sinfo -al" and once you are on a node you can see if the cards (Intel(R) Data Center GPU Max) are by running "sycl-ls" (after you source setvars of course).
+
+Recently resolved:
+1.  unzip is on the systems now
+2.  HPC toolkit is on the systems now (including Fortran)
 
 ---  
 ## Extend your access<div id='extend-access'/>
