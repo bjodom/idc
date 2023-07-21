@@ -433,18 +433,9 @@ We do plan to offer more isolated systems in the future which will host these hi
 
 Please read these carefully, many may solve obstacles you encounter.
 
-1. **raise ulimit:** You can raise your ulimit ONCE per SLURM session; if you do not you will be limited to 1 hour CPU time and a modest stack size.  You might just put ulimit commands in your ~/.bashrc - for instance:
-```bash
-ulimit -t 90000 2>/dev/null
-ulimit -s 32768 2>/dev/null
-ulimit -n 4000 2>/dev/null
-ulimit -p 4000 2>/dev/null
-ulimit -m unlimited 2>/dev/null
-```
-A quirk of running under SLURM is that you can do this exactly once (raising from the default limits), and any additional ulimit commands cannot raise the prevailing limits (but they can lower) for that session (srun or sbatch).
-   
-2. **Incoming only ssh/fstp/scp:** Your ~/.ssh directory is owned by root.  Please leave it alone, changing it would not do what you hope.  You can use https in and out (e.g., git). However, ssh, sftp, scp, etc. are incoming only.  You can use the -L option on your ssh into the instance to connect your machine nicely into the instance.  If you cannot figure out how to get this working, or feel it is too limiting - reach out to us to [discuss via request support - see instructions.](#where-to-get-support)
-3. **Do not forget /tmp:** Your account has (onlyh) 20G of persistent storage (available on all nodes, and persists between logins). For more high speed temporary space, try using /tmp. Of course, /tmp may be wiped clean by a reboot - it should survive on a node otherwise. If you need to reconnect, you may need to specify the node you need to attach to using an additional option on srun such as -w idc-beta-batch-pvc-node-XX (you need to know which node XX to specify).  If there is popular dataset, or tool, you want available globally - reach out to us to [make suggestion via request support - see instructions.](#where-to-get-support)
+1. **Incoming only ssh/fstp/scp:** Your ~/.ssh directory is owned by root.  Please leave it alone, changing it would not do what you hope.  You can use https in and out (e.g., git). However, ssh, sftp, scp, etc. are incoming only.  You can use the -L option on your ssh into the instance to connect your machine nicely into the instance.  If you cannot figure out how to get this working, or feel it is too limiting - reach out to us to [discuss via request support - see instructions.](#where-to-get-support)
+2. **Do not forget /tmp:** Your account has (only) 20G of persistent storage (available on all nodes, and persists between logins). For more high speed temporary space, try using /tmp. Of course, /tmp may be wiped clean by a reboot - it should survive on a node otherwise. If you need to reconnect, you may need to specify the node you need to attach to using an additional option on srun such as -w idc-beta-batch-pvc-node-XX (you need to know which node XX to specify).  If there is popular dataset, or tool, you want available globally - reach out to us to [make suggestion via request support - see instructions.](#where-to-get-support)
+3. **Do remember /tmp is NOT PERMANENT** all files in /tmp will disappear without notice (reboots) - so its a great place to use extra space for a brief time, but don't do work there that is not easily recreated
 4. **Renew your access before it expires:** We cannot restore files if you let your access expire - they really are lost. We recommend you [Extend your access](#extend-access)) in the week preceeding expiration, and due to a bug (see next section) you really do not want to use it on the last day. Of course, even if it expires you can create another instance and recreate your environment/files.
 5. **If your ssh fails** the two most common causes are: (a) incorrect ssh folder and file permissions, (b) being out of sync with the instance.  For the first (a), refer to [SSH folder and file permissions](#ssh-permissions). For the latter (b), go to https://scheduler.cloud.intel.com ([click here to see the screenshots on how to do](#put-key-in)) and put your public key in your profile (to be sure it matches the one you are using on your systme) and then launch a new instance.
 6. **Publish results:** We welcome you publishing results you get from using Intel Developer Cloud. Of course, if you see anything unexpected we would welcome [questions via request support - see instructions.](#where-to-get-support). We enjoy seeing mention if you enjoyed using the Intel Developer Cloud, and we encourage you to use the exclusive queue to get performance numbers without others on the system you are running upon. The systems with PCIe cards are 1100 (single tile) GPUs, and we will eventually also have 1550 (dual tile) GPUs. Noting which model you used is encouraged too.
@@ -464,8 +455,10 @@ Right now, here are a few things we know are not working:
 5.  **cannot use/see PVC** - please read [Troubleshooting](#troubleshoot) - we see several reasons pop up that users cannot access the GPU (PVC) - start with the [Verify it works / Troubleshoot](#troubleshoot) to see if it is a configuration issue, or something else - yes, some nodes have a nasty habit of losing track of its PVC cards - we are investigating - if you issues with nodes where PVC cards disappear (to the OS) - let us know, and feel free to try other nodes (from head node, use "srun -p pvc-shared -w idc-beta-batch-pvc-node-05 --pty bash" to force yourself onto node 05 (change to try other nodes). You can see what nodes are online with "sinfo -al" and once you are on a node you can see if the cards (Intel(R) Data Center GPU Max) are by running "sycl-ls" (after you source setvars of course).
 
 Recently resolved:
-1.  **unzip** is on the systems now
-2.  **HPC toolkit** is on the systems now (including Fortran)
+1.  **/tmp** filesystem allows builds (executables) now - so you can use the space for TEMPORARY build (cleared at reboots)
+2.  nodes no longer limited by head node ulimits (was a mistaken we fixed)
+3.  **unzip** is on the systems now
+4.  **HPC toolkit **is on the systems now (including Fortran)
 
 ---  
 ## Extend your access<div id='extend-access'/>
