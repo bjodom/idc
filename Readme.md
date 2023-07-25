@@ -5,47 +5,49 @@
 Use https://github.com/bjodom/idc if you are blocked from the tinyurl redirect.
 
 
-- [Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud](#batch-mode-access-to-pvc-enabled-spr-systems-in-the-intel-developer-cloud)
+- [Batch Mode Access to PVC-Enabled SPR Systems in the Intel® Developer Cloud (IDC)](#batch-mode-access-to-pvc-enabled-spr-systems-in-the-intel-developer-cloud-idc)
   - [Overview](#overview)
-  - [Simple 1-2-3](#steps)
-  - [Account Registration](#sign-up)
+  - [Simple 1-2-3 steps ](#simple-1-2-3-steps-)
+  - [Account Registration](#account-registration)
   - [SSH Setup](#ssh-setup)
     - [ssh-keygen](#ssh-keygen)
     - [SSH Public Key Creation](#ssh-public-key-creation)
-    - [SSH .config Client Setup](#ssh-config-client-setup)
-    - [For Intel Employees](https://tinyurl.com/mw72yskf)
-    - [For MingW64 users use below, line order matters.](#mingw64)
-    - [SSH folder and file permissions](#ssh-permissions)
+    - [SSH .config Client Setup (assumes no proxy needed)](#ssh-config-client-setup-assumes-no-proxy-needed)
+    - [Linux, WSL, \& MAC clients](#linux-wsl--mac-clients)
+    - [For Intel Employees - you need PROXY settings to function from VPN or in the office](#for-intel-employees---you-need-proxy-settings-to-function-from-vpn-or-in-the-office)
+    - [For MingW64 users use below, line order matters.](#for-mingw64-users-use-below-line-order-matters)
+    - [For PowerShell Users](#for-powershell-users)
+    - [SSH folder and file permissions](#ssh-folder-and-file-permissions)
   - [Head Node vs Compute Nodes](#head-node-vs-compute-nodes)
     - [Head Node](#head-node)
     - [Interactive Worker Nodes](#interactive-worker-nodes)
       - [Go interactive!](#go-interactive)
   - [Environment Setup](#environment-setup)
-  - [Verify it works / Troubleshoot](#troubleshoot)
+  - [Verify it works / Troubleshoot](#verify-it-works--troubleshoot)
   - [Jupyter](#jupyter)
-   - [Additional Software](#additional-software)
+  - [Additional Software](#additional-software)
   - [Common Slurm Commands](#common-slurm-commands)
   - [Sample GPU Test Code](#sample-gpu-test-code)
-  - [Some Example Scripts](#some-example-scripts)
-  - [Running MPI](#mpi)
-  - [If you use MobaXterm](#MobaXterm)
-  - [VTune, Advisor, PTrace - later](#securitynogoes)
-  - [FAQs: Super Important Tips that may be non-obvious](#faq)
-  - [Notable Known Issues](#issues)
-  - [Extend your access](#extend-access)
+  - [An Example Script](#an-example-script)
+  - [Running MPI](#running-mpi)
+  - [If you use MobaXterm](#if-you-use-mobaxterm)
+  - [VTune, Advisor, PTrace - and other things you will get later](#vtune-advisor-ptrace---and-other-things-you-will-get-later)
+  - [FAQs: Super Important Tips that may be non-obvious](#faqs-super-important-tips-that-may-be-non-obvious)
+  - [Notable Known Issues](#notable-known-issues)
+  - [Extend your access](#extend-your-access)
   - [Where to get Support](#where-to-get-support)
-  - [Revisit This Page for Tips](#revisit-often)
+  - [Revisit This Page for Tips](#revisit-this-page-for-tips)
 
 --- 
 ## Overview<div id='overview'/>
 
-The Intel Developer Cloud (IDC) trial is open to pre-qualified Intel customers, approved developers, and all Intel employees.  While we plan to formerly launch in the future, today you will already be gaining access to a powerful, highly functional, system, and nd one that can greatly benefit from you sharing your experinces so we can improve it.  In other words, it is not perfect and we would appreciate your help finding the rough edges.
+The Intel Developer Cloud (IDC) trial is open to pre-qualified Intel customers, approved developers, and all Intel employees.  While we plan to formerly launch in the future, today you will already be gaining access to a powerful, highly functional, system, and one that can greatly benefit from you sharing your experiences so we can improve it.  In other words, it is not perfect and we would appreciate your help finding the rough edges.
 
 The picture below illustrates how to think of this system at a high level.
 
-This is NOT a cluster, and it is not a system which will giv eyou root access.  The system is a shared system (please be respectful of others in not hogging resources unnecessarily), not a virtualized one.
+This is NOT a cluster, and it is not a system which will give you root access.  The system is a shared system (please be respectful of others in not hogging resources unnecessarily), not a virtualized one.
 
-This IS a system with round-the-clock access to systems with Intel GPU Max series GPUs (PVCs).
+This IS a system with round-the-clock access to systems with 4th Gen Intel® Xeon® Scalable processors and Intel GPU Max series GPUs (PVCs).
 
 ![High level view](https://github.com/jamesreinders/idc/assets/6556265/1a7a1392-1e0e-44d1-825f-b99d4ccb8458)
 
@@ -56,7 +58,7 @@ This Readme files has a lot of detail, but you should start by focusing on only 
 
 1. Get an account on Intel® Developer Zone.  If you have one, you do not need to create a new one.  If you need one, <a href="https://www.intel.com/content/www/us/en/secure/forms/developer/standard-registration.html?tgt=www.intel.com/content/www/us/en/secure/developer/devcloud/cloud-launchpad.html">sign up now</a> - it is free and instant.  Note: Intel employees also have an employee login option that is only usable internally (in the office, or externally via VPN) - just look for the "Employee Sign In" and click that instead of entering a username, etc.  If you are an Intel employee, you can create an account with any non-Intel email in order to sign in without being on the corporate network.
 2. Have an Public-Private Authentication Key Pair that has ed25519 or RSA 4096 level of strength.  If you have one, you do not need to create a new one.  If you need one, follow [SSH Setup](#ssh-setup) instructions to create one (free and instant).  With your key, we recommend setting up your config file to make ssh easy (see [SSH .config Client Setup](#ssh-config-client-setup)).
-3. Create and use the service - it is free and instant (no need to enter any payment information - no credit card needed). Everyone can schedule and deploy the service with <a href="https://scheduler.cloud.intel.com/">Intel® Developer Cloud management console.</a>  From there pick `Scheduled access - Intel® Max Series GPU (PVC) on 4th Gen Intel® Xeon® processors - 1100 series (4x)`.  Intel employees wanting to use their employee login, should get on the internal network (VPN) and go <a href="https://www.intel.com/content/www/us/en/developer/tools/devcloud/services.html">here</a> and click <a href="https://scheduler.cloud.intel.com/">Sign In</a>. 
+3. Create and use the service - it is free and instant (no need to enter any payment information - no credit card needed). Everyone can schedule and deploy the service with <a href="https://scheduler.cloud.intel.com/">Intel® Developer Cloud management console.</a>  From there pick `Intel® Max Series GPU (PVC) on 4th Gen Intel® Xeon® processors - 1100 series (4x) (Batch Processing/Scheduled access)`.  Intel employees wanting to use their employee login, should get on the internal network (VPN) and go <a href="https://www.intel.com/content/www/us/en/developer/tools/devcloud/services.html">here</a> and click <a href="https://scheduler.cloud.intel.com/">Sign In</a>. 
 
 These three steps will get you ON the system.  You'll find more instructions on setting up an environment, using Jupyter, and more later in this Readme.
 
@@ -123,7 +125,7 @@ Please, please, please be sure your .ssh file permissions are set correctly.  Fa
 
 Now you can ssh to the node.   "ssh myidc" (use the name you set in your ~/.ssh/config).
 
-From here, the most likely thing you want to do is "srun --pty bash" to open a live session on a 4th Gen Xeon system with Intel Max GPUs (PVCs) - where you can compile and run code (including single node multirank MPI programs), launch Jupyter notebooks, and more!
+From here, the most likely thing you want to do is `srun --pty bash` to open a live session on a 4th Gen Xeon system with Intel Max GPUs (PVCs) - where you can compile and run code (including single node multi-rank MPI programs), launch Jupyter notebooks, and more!
 
 ---
 ## SSH Setup<div id='ssh-setup'/>
@@ -138,7 +140,7 @@ To create a key use the `ssh-keygen` utility found in your terminal application.
 
 For WSL, Linux and MAC clients enter the below command
 ```bash
-ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519_idc -C "you@email.com"
+ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519_idc -C "your@email.com"
 ```
 For PowerShell enter:
 ```bash
@@ -150,6 +152,8 @@ The passphrase is optional and you can hit enter for no pass phrase.  This will 
 ### SSH .config Client Setup (assumes no proxy needed)<div id='ssh-config-client-setup'>
 
 To make accessing the IDC convenient, it is recommended to setup a `.ssh\config` file.
+
+### Linux, WSL, & MAC clients
 
 ```bash
 Host myidc #←YOU CAN CALL IT ANYTHING
@@ -169,7 +173,7 @@ Visit <a href="https://tinyurl.com/mw72yskf">Internal Wiki</a> for a run down of
 ### For MingW64 users use below, line order matters.<div id='mingw64'>
 
 ```bash
-ProxyCommand "C:\Program Files\Git\mingw64\bin\connect.exe" -S proxy-dmz.intel.com:1080 %h %p
+#ProxyCommand "C:\Program Files\Git\mingw64\bin\connect.exe" -S proxy-dmz.intel.com:1080 %h %p  # Optional Proxy Command
 Host myidc
 Hostname idcbetabatch.eglb.intel.com
 User uXXXXXX #← Request "scheduled access" at https://scheduler.cloud.intel.com/#/systems" to get your user identifier.
@@ -177,6 +181,22 @@ IdentityFile ~/.ssh/id_ed25519_idc
 ServerAliveInterval 60
 ServerAliveCountMax 10
 StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+```
+
+### For PowerShell Users
+
+* Note you must install ncat, it is done by installing <a href="https://nmap.org/dist/nmap-7.92-setup.exe">nMap</a> and selecting the ncat option.
+
+```bash
+Host myidc
+Hostname idcbetabatch.eglb.intel.com
+User uXXXXXX #← Request "scheduled access" at https://scheduler.cloud.intel.com/#/systems" to get your user identifier.
+IdentityFile ~/.ssh/id_ed25519_idc
+#ProxyCommand ncat --proxy YourProxy:XXXX %h %p --proxy-type socks5 %h %p  ## Uncomment if necessary
+ServerAliveInterval 60
+ServerAliveCountMax 10
+StrictHostKeyChecking no 
 UserKnownHostsFile=/dev/null
 ```
 
@@ -202,18 +222,20 @@ You are allowed up to 4 connections to the IDC.  If you lose a connection and re
 ---  
 ## Head Node vs Compute Nodes<div id='head-node-vs-compute-node'/>
 
-Upon initial connection to the IDC, you are connected to the head node.  This environment is a standard Ubuntu 22.04.02 LTS environment including `dev-essential` and the <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit.html#gs.yh16wk">Intel oneAPI Basekit.</a>  This IDC utilizes <a href="https://slurm.schedmd.com/quickstart.html">SLURM</a> to manage job scheduling and resource management.   As a cluster workload manager, SLURM has three key functions. First, it allocates exclusive and/or non-exclusive access to resources (compute nodes) to users for some duration of time so they can perform work. Second, it provides a framework for starting, executing, and monitoring work (normally a parallel job) on the set of allocated nodes. Finally, it arbitrates contention for resources by managing a queue of pending work.
+Upon initial connection to the IDC, you are connected to the head node.  This IDC utilizes <a href="https://slurm.schedmd.com/quickstart.html">SLURM</a> to manage job scheduling and resource management.   As a cluster workload manager, SLURM has three key functions. First, it allocates exclusive and/or non-exclusive access to resources (compute nodes) to users for some duration of time so they can perform work. Second, it provides a framework for starting, executing, and monitoring work (normally a parallel job) on the set of allocated nodes. Finally, it arbitrates contention for resources by managing a queue of pending work.
 
 ### Head Node
 
-The `head` node is a login node and a method of authentication, no development work can occur on the `head node`.  There are `no accelerators` on the head node.  From the head node you can do file management, launch and manage SLURM jobs on the dedicated partition or launch an interactive job on one of the worker nodes. Your home directory is automatically mounted on the worker node when you connect.  It has a maximum of 20GB of storage.  There is a data directory where training and datasets can be stored.  `/home/common/data`
+The `head` node is a login node and a method of authentication, no development work can occur on the `head node`.  There are `no accelerators` on the head node.  From the head node you can do file management, launch and manage SLURM jobs on the dedicated partition or launch an interactive job on one of the worker nodes. Your home directory is automatically mounted on the worker node when you connect.  It has a maximum of 20GB of storage.  There is a data directory where training, datasets, and conda-configs are stored.  `/home/common/data`
 
 ### Interactive Worker Nodes
+
+The worker node is a standard Ubuntu 22.04.02 LTS environment including many developer utilities.  In addition <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html#gs.30y95h">the Intel oneAPI Basekit, HPCKit, Renderkit and several Intel optimized AI environments using Conda and OpenVino are installed.</a>  
 
 #### Go interactive!
 
 ```bash
-srun -p pvc-shared --pty bash
+srun --pty bash
 source /opt/intel/oneapi/setvars.sh
 ```
 
@@ -224,30 +246,30 @@ The `interactive worker nodes` are resource constrained in that they are shared 
 
 Enter `source /opt/intel/oneapi/setvars.sh` and the oneAPI development environment will be initialized.
 
-Enter `conda env list` and activate the python environment of your choice.  Both Tensorflow and Pytorch environments have Jupyter installed.  If you don't like those environments create your own conda environment and customize to your liking.
+Enter `conda env list` and activate the python environment of your choice.  Both Tensorflow and Pytorch environments have Jupyter installed.  If you don't like those environments create your own conda environment and customize to your liking. 
 
 ---
 ## Verify it works / Troubleshoot<div id='troubleshoot'>
 
 Please verify that your environment works at this point enough to "see" the PVC (GPUs).  If you cannot, there is little point in doing more until we fix it so you *can* see the GPUs.
 
-Here are the commands you should have done already to reach a node with GPUs, plus three more.  The first command is on your systen. The second command is on the head node. The last three commands will be on an a node that has PVC cards.  The output of these commands see you do have access to the GPU cards, and if not give us a hint on why not.
+Here are the commands you should have done already to reach a node with GPUs, plus three more.  The first command is on your system. The second command is on the head node. The last three commands will be on an a node that has PVC cards.  The output of these commands see if have access to the GPU cards, and if not give us a hint on why not.
 
 ```bash
 ssh myidc
 srun --pty bash
-groups
+groups  # Key group is render, PVC access is unavailable if you do not have render group present.
 source /opt/intel/oneapi/setvars.sh
 sycl-ls
 ```
 
-The output of *sycl-ls* should show multiple lines mentioning *Data Center GPU Max*.  If this is true, you have successfuly confirmed that you have access to GPUs.  Proceed to additional steps - no further testing is needed.
+The output of *sycl-ls* should show multiple lines mentioning *Data Center GPU Max*.  If this is true, you have successfully confirmed that you have access to GPUs.  Proceed to additional steps - no further testing is needed.
 
 If you do not see *Data Center GPU Max* in your *sycl-ls* output, then we need to figure out why so you can report the right issues to support.
 
 First, check the output of the 'groups' command. The output is a list (on one line, no commas between the names) of groups your user ID is in.  One of those names needs to be **render**.  If it is not, stop at this point and send a note to support which mentions your actual user ID something like this: "My user *uxxxxxx* is not a member of group *render* - please correct this."  To submit this see [Where to get Support](#where-to-get-support).
 
-Second, for a variety of reasons some nodes have a nasty habit of losing track of its PVC cards - we are investigating and improving things daily (this is a *beta* after all). If you issues with nodes where PVC cards disappear (to the OS), proven by *sycl-ls* not listing them, then please let us know (see [Where to get Support](#where-to-get-support)).  Also, feel free to try other nodes (from head node, use "srun -p pvc-shared -w idc-beta-batch-pvc-node-05 --pty bash" to force yourself onto node 05 (change to try other nodes). You can see what nodes are online with "sinfo -al" and once you are on a node you can see if the cards (Intel(R) Data Center GPU Max) are by running "sycl-ls" (after you source setvars of course).
+Second, for a variety of reasons some nodes have a nasty habit of losing track of its PVC cards - we are investigating and improving things daily (this is a *beta* after all). If you issues with nodes where PVC cards disappear (to the OS), proven by *sycl-ls* not listing them, then please let us know (see [Where to get Support](#where-to-get-support)).  Also, feel free to try other nodes (from head node, use `srun -p pvc-shared -w idc-beta-batch-pvc-node-05 --pty bash` to force yourself onto node 05 (change to try other nodes). You can see what nodes are online with `sinfo -al` and once you are on a node you can see if the cards (Intel(R) Data Center GPU Max) are by running `sycl-ls` (after you source setvars of course).
  
 ## Jupyter<div id='jupyter'/>
 
@@ -315,8 +337,8 @@ srun -p {PARTITION-NAME} {SCRIPT-NAME}
 scancel {JOB-ID}
 
 Go interactive with a compute node
-srun -p {PARTITION-NAME} -n 1 -t 00-00:10 --pty bash -i (with time and specific node.)
-srun --job-name "u-pick" --pty bash -i (First available.)
+
+srun --pty bash
 ```
 
 ---  
@@ -352,14 +374,18 @@ srun a.out
 If successful it should return Device: Intel(R) Data Center GPU Max 1100.  Demonstrating that you successfully compiled a SYCL application and offloaded it's execution to a GPU on the compute node.
 
 ---  
-## Some Example Scripts<div id='some-example-scripts'/>
+## An Example Script<div id='some-example-scripts'/>
+
+This will email you at the start and completion of your job.  
 
 ```bash
 #!/bin/bash
-#SBATCH -A <account> 
-#SBATCH -p pvc
+#SBATCH --job-name=gpu_run
+#SBATCH --partition=pvc-shared
 #SBATCH --error=job.%J.err 
 #SBATCH --output=job.%J.out
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=your@emai.com
 
 srun ./my_a.out
 ```
@@ -439,6 +465,7 @@ Please read these carefully, many may solve obstacles you encounter.
 4. **Renew your access before it expires:** We cannot restore files if you let your access expire - they really are lost. We recommend you [Extend your access](#extend-access)) in the week preceeding expiration, and due to a bug (see next section) you really do not want to use it on the last day. Of course, even if it expires you can create another instance and recreate your environment/files.
 5. **If your ssh fails** the two most common causes are: (a) incorrect ssh folder and file permissions, (b) being out of sync with the instance.  For the first (a), refer to [SSH folder and file permissions](#ssh-permissions). For the latter (b), go to https://scheduler.cloud.intel.com ([click here to see the screenshots on how to do](#put-key-in)) and put your public key in your profile (to be sure it matches the one you are using on your systme) and then launch a new instance.
 6. **Publish results:** We welcome you publishing results you get from using Intel Developer Cloud. Of course, if you see anything unexpected we would welcome [questions via request support - see instructions.](#where-to-get-support). We enjoy seeing mention if you enjoyed using the Intel Developer Cloud, and we encourage you to use the exclusive queue to get performance numbers without others on the system you are running upon. The systems with PCIe cards are 1100 (single tile) GPUs, and we will eventually also have 1550 (dual tile) GPUs. Noting which model you used is encouraged too.
+7. **GDB** gdb is called via gdb-oneapi. This version will enable you to debug on CPU and GPU.  
 
 ---
 ## Notable Known Issues<div id='issues'>
@@ -465,7 +492,7 @@ Recently resolved:
 
 This is subject to change - here is where we are now:
 1. The system should auto-extend your account if you are using it during the last week of your allocated time. If it is idle in the days before it expires, your account will disappear and we cannot restore it (asking would be futile).
-2. In the final week, you can visit https://scheduler.cloud.intel.com and request an extension.  Ideally, a button will appear next ot the instance when you schedule the "View Instances" tab. Click it and fill in the form and submit. If nothing appears on the "View Instances" tab - then you need to go to the "Launch Instance" tab, check the box in frotn of "Scheduled access..." and click "Launch Instance." You should now see a button to request an extension, click it and follow instructions to submit a request.  If all else fails, please [request support - see instructions.](#where-to-get-support)
+2. In the final week, you can visit https://scheduler.cloud.intel.com and request an extension.  Ideally, a button will appear next ot the instance when you schedule the "View Instances" tab. Click it and fill in the form and submit. If nothing appears on the "View Instances" tab - then you need to go to the "Launch Instance" tab, check the box in front of "Intel® Max Series GPU (PVC) on 4th Gen Intel® Xeon® processors - 1100 series (4x) (Batch Processing/Scheduled access)" and click "Launch Instance." You should now see a button to request an extension, click it and follow instructions to submit a request.  If all else fails, please [request support - see instructions.](#where-to-get-support)
 
 ---    
 ## Where to get Support<div id='where-to-get-support'/>
