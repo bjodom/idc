@@ -193,7 +193,7 @@ Host myidc
 Hostname idcbetabatch.eglb.intel.com
 User uXXXXXX #← Request "scheduled access" at https://scheduler.cloud.intel.com/#/systems" to get your user identifier.
 IdentityFile ~/.ssh/id_ed25519_idc
-#ProxyCommand ncat --proxy YourProxy:XXXX %h %p --proxy-type socks5 %h %p  ## Uncomment if necessary
+#ProxyCommand ncat --proxy YourProxy:XXXX --proxy-type socks5 %h %p  ## Uncomment if necessary
 ServerAliveInterval 60
 ServerAliveCountMax 10
 StrictHostKeyChecking no 
