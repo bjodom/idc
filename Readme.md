@@ -315,7 +315,7 @@ It's possible to install additional software if regular user permissions are the
 1.  `conda activate base`
 2.  `conda update conda`
 3.  `conda config --add channels intel`
-4.  `conda create -n idp intelpython3_core python=3.10`
+4.  `conda create -n idp intelpython3_full`
 5.  `conda activate idp`
 
 Keep in mind you have 20GB of storage in your home directory for all software and data.
