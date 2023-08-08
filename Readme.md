@@ -501,7 +501,7 @@ We have a small team ramping to respond quickly: please go to the support addres
 
 We really hope you will contact us with feedback and requests by clicking ["Submit Service Request"](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482) (goes to a small team) at [intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482](https://www.intel.com/content/www/us/en/support/contact-intel.html#support-intel-products_67709:59441:231482).
 
-You may ALSO send an email to [ReadmeIDC@intel.com](mailto:ReadmeIDC@intel.com) until July 27 for anything.  WARNING: James and Ben may be much slower to respond than the ticket system, but we may be able to help with tough questions quicker.  Feel free to send it both ways until July 27.  After July 27, please escalate to [ReadmeIDC@intel.com](mailto:ReadmeIDC@intel.com) if you do not get a response to your ticket within a day, or a plan for resolution within 3 days. Please reference your ticket numbers.
+You may ALSO send an email to [ReadmeIDC@intel.com](mailto:ReadmeIDC@intel.com) WARNING: James and Ben may be much slower to respond than the ticket system, but we may be able to help with tough questions quicker. If you do not get a response to your ticket within a day, or a plan for resolution within 3 days. Please reference your ticket numbers.
 
 ---  
 ## Revisit This Page for Tips<div id='revisit-often'/>
