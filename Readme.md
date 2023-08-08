@@ -289,9 +289,8 @@ The details, enter these from a terminal:
 ```bash
 ssh myidc
 srun --pty bash
-echo $(ip a | grep -v -e "127.0.0.1" -e "inet6" | grep "inet" | awk {'print($2)}' | sed 's/\/.*//')
 conda activate pytorch_xpu
-jupyter-lab --ip 10.10.10.X
+jupyter-lab --ip $(hostname -i)
 ```
 Take note of the IP and the port that jupyter launches on, it will look something like this:
 
