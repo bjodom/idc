@@ -93,7 +93,7 @@ Next, we proceed to https://scheduler.cloud.intel.com/#/systems to go to the clo
 
 Here we need to make sure our SSH public key is in our profile.  Click the person/profile icon on the blue bar (NOT the one higher up on the same page).
 
-![image](https://github.com/jamesreinders/idc/assets/6556265/0a42c806-a477-4364-a662-2fadc1e8b14e)
+![image](https://github.com/bjodom/idc/blob/main/assets/profile.png)
 
 Paste in your public key
 
@@ -105,7 +105,7 @@ Click "Save Key" and then Select the "Instances" Tab.
 
 Check the "Scheduled..." instance, and click "Launch Instance"
 
-![image](https://github.com/jamesreinders/idc/assets/6556265/d1e99388-ae61-4a04-988f-d56b8a6fb710)
+![image](https://github.com/bjodom/idc/blob/main/assets/instance.png)
 
 Request access by clicking "Request Access."  Note: once you have an instance, this page would show you the information (username, etc.) in case you have forgotten it.
 
