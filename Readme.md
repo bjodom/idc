@@ -45,7 +45,7 @@ The Intel Developer Cloud (IDC) trial is open to pre-qualified Intel customers, 
 
 The picture below illustrates how to think of this system at a high level.
 
-This is NOT a cluster, and it is not a system which will give you root access.  The system is a shared system (please be respectful of others in not hogging resources unnecessarily), not a virtualized one.
+This is NOT a cluster, and it is not a system that will give you root access.  The system is a shared system (please be respectful of others in not hogging resources unnecessarily), not a virtualized one.
 
 This IS a system with round-the-clock access to systems with 4th Gen Intel® Xeon® Scalable processors and Intel GPU Max series GPUs (PVCs).
 
