@@ -408,6 +408,13 @@ mpirun -launcher fork -n 128 ./a.out
 
 These are probably the same (ssh and fork), but honestly we don't know.  They seem to run in the same time.  Let us know if you decide one is a superior choice.
 
+Instead of using the -launcher option, you can also unset the environment variables that trigger mpirun to use SLURM.  To do so, use:
+```bash
+unset SLURM_TASKS_PER_NODE
+unset SLURM_JOBID
+```
+Unfortunately, adding these to your ~/.bashrc will not work becasue they are added into your environment later than that.  But, you can issue manually before you use mpirun if you want to avoid the -launcher option.
+
 Visit the [MPI with SYCL example page](etc/MPI.md) for a quick example of how to get a SYCL Hello World from 40 different connections to GPUs (40 ranks).
 
 ---
