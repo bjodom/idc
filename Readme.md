@@ -209,7 +209,7 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/config
 chmod 600 ~/.ssh/known_hosts*
 chmod 400 ~/.ssh/id*
-chmod 644 ~/.ssh/*.pub
+chmod 400 ~/.ssh/*.pub
 ```
 
 Once you are configured properly, from the terminal future connections are established by entering:
