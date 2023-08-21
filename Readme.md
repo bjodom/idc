@@ -186,13 +186,13 @@ UserKnownHostsFile=/dev/null
 
 ### For PowerShell Users
 
-* Note you must install ncat, it is done by installing <a href="https://nmap.org/dist/nmap-7.92-setup.exe">nMap</a> and selecting the ncat option.
+* Note you must install ncat if behind a proxy.  A method to install can be accomplished by installing <a href="https://nmap.org/dist/nmap-7.92-setup.exe">nMap</a> and selecting ncat in the options.  If you do not need a proxythe below should just work.
 
 ```bash
 Host myidc
 Hostname idcbetabatch.eglb.intel.com
 User uXXXXXX #← Request "scheduled access" at https://scheduler.cloud.intel.com/#/systems" to get your user identifier.
-IdentityFile ~/.ssh/id_ed25519_idc
+IdentityFile C:\Users\youruserid\.ssh\id_ed25519_idc
 #ProxyCommand ncat --proxy YourProxy:XXXX --proxy-type socks5 %h %p  ## Uncomment if necessary
 ServerAliveInterval 60
 ServerAliveCountMax 10
