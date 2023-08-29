@@ -25,6 +25,8 @@ Use https://github.com/bjodom/idc if you are blocked from the tinyurl redirect.
   - [Environment Setup](#environment-setup)
   - [Verify it works / Troubleshoot](#verify-it-works--troubleshoot)
   - [Jupyter](#jupyter)
+  - [VS Code Desktop Client](#vs-code-desktop-client)
+    - [Overview of Steps](#overview-of-steps)
   - [Additional Software](#additional-software)
   - [Common Slurm Commands](#common-slurm-commands)
   - [Sample GPU Test Code](#sample-gpu-test-code)
@@ -307,6 +309,78 @@ ssh myidc -L 8888:10.10.10.X:8888
  Open your browser and enter `localhost:8888` or shift+click the link in the other terminal, or paste the token that was provided to you when you initialized the server as your password and use Jupyter lab as usual.
 
 ---   
+
+## VS Code Desktop Client
+
+One can use <a href="https://code.visualstudio.com/"> VS Code</a> to connect to the IDC via the tunnels plugin which can streamline access once setup and connected.  However, VSCode has the problem of plenty with respect to plugins and sometimes they conflict.  If you have an issue please try and slim down the number of plugins.  In addition many corporate proxies do not support web sockets.  This is best used without a proxy, YMMV.
+
+### Overview of Steps
+
+1. Successfully connect to IDC via SSH.  See above.
+2. Have a GIT account that you can use as an OAuth provider.
+3. Install Code Server on IDC in your user account.
+4. Install VS Code if you do not have it. 
+5. Add Remote - Tunnels Extension ID `ms-vscode.remote-server`
+6. Connect to IDC worker node running VS Code Server
+7. Authenticate Machine
+8. Done.
+
+Connect to IDC and get on a worker node:
+
+```bash
+ssh myidc
+srun --pty bash
+```
+
+From the worker node download, unzip and execute VS Code Server, you only need to do the following the initial time.  Afterwards just execute `./code tunnel`
+
+```bash
+curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz
+
+tar -xzf vscode_cli
+
+./code tunnel --accept-server-license-terms
+```
+
+Upon successful execution your screen should resemble the below screen:
+
+![image](https://github.com/bjodom/idc/blob/main/assets/1.PNG)
+
+As stated in the overview, you will need to have a working GitHub account:  A `ctrl+click` on the console should take you to a screen that looks like below.  Enter the code and follow the prompts.
+
+![image](https://github.com/bjodom/idc/blob/main/assets/2.PNG)
+
+![image](https://github.com/bjodom/idc/blob/main/assets/3.PNG)
+
+Upon successful activation and authentication you will want to name your tunnel.  This name never needs to change and you can call it anything.  It attempts to use the machines name which is too long so shorten it.  Your screen will resemble below:
+
+![image](https://github.com/bjodom/idc/blob/main/assets/4.PNG)
+
+At this point launch your VS Code client, it is possible to just use a browser but you do not get the same level of functionality.  If you do not have the extension `Remote Tunnels` install it.  The extensions can be found under the 5th icon on the left of the VS Code UI.
+
+![image](https://github.com/bjodom/idc/blob/main/assets/5.PNG)
+
+You will likely be asked to authorize Remote - Tunnels using GitHub.  This typically only happens on the very first connection.
+
+![image](https://github.com/bjodom/idc/blob/main/assets/6.PNG)
+
+Follow the prompts, depending on how many organizations you belong to there could be several pages.  You do not need to authorize any of your other organizations just allow VS Code to talk to the IDC.
+
+![image](https://github.com/bjodom/idc/blob/main/assets/7.PNG)
+
+From VS Code Enter F1 and enter  `Remote - Tunnels: Connect to Tunnel`  Enter the name you called your tunnel.
+
+![image](https://github.com/bjodom/idc/blob/main/assets/8.PNG)
+
+There will be one final authorization, don't forget to check the box or you will be asked again:
+
+![image](https://github.com/bjodom/idc/blob/main/assets/9.PNG)
+
+At this point you should achieve a successful connection.  There will be a green box with the name of your tunnel in the lower left corner of VS Code.  
+
+In the future all you need to do is login in to the IDC, establish the tunnel and connect to VS Code using F1 and Remote - Tunnels Connect.  
+
+
 
 ## Additional Software<div id='additional-software'/>
 
