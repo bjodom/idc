@@ -387,8 +387,7 @@ In the future all you need to do is login in to the IDC, establish the tunnel an
 It's possible to install additional software if regular user permissions are the only requirements.  For example to install <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/get-started-with-intel-distribution-for-python.html">the Intel® Distribution for Python</a> follow these steps:  Miniconda is already installed, but you will be creating a virtual environment in your home directory.  
 
 1.  `conda activate base`
-2.  `conda update conda`
-3.  `conda config --add channels intel`
+2.  `conda config --add channels intel`
 4.  `conda create -n idp intelpython3_full`
 5.  `conda activate idp`
 
