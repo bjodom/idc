@@ -72,31 +72,20 @@ Here the process to get your account and access the service, described above, st
 To access the batch service, external users must register for an Intel® Developer Cloud user account, via the Sign Up button on the Intel® Developer Cloud landing page (http://cloud.intel.com) and follow the steps in the Intel Cloud registration process.
 Intel employees can use their existing intel.com credentials to access the Intel® Developer Cloud portal and select the batch service via the "Employee Sign In" link on this same page.
 
-![image](https://github.com/jamesreinders/idc/assets/6556265/519038c0-a13a-45b1-b7d2-5aadcfb50136)
+![image](https://github.com/bjodom/idc/assets/6556265/4a20d662-c2ff-4cca-8fb5-96d02e84e1f7)
 
-To register, press the ' Create the Account' button, as indicated:
+To register, press the 'Get Started' button, and then "Subscribe' for the Free Tier:
 
-![image](https://github.com/jamesreinders/idc/assets/6556265/0088d805-ab12-4181-ba26-0688faef0bc5)
+![image](https://github.com/bjodom/idc/assets/6556265/4329a3fc-439f-45f3-96d4-ed4ae74ba5dc)
 
-In the new registration screen, fill out the registration input fields and press "Next: Verify your email" button.
+In the new registration screen, fill out the registration input fields and submit.
 
 ![image](https://github.com/jamesreinders/idc/assets/6556265/3f17e5ba-5645-44d4-a9b9-4107ab3e4d1d)
 
-A confirmation is sent to the email address that was entered in the registration screen. The email contains a single-use code, illustrated below.  You should get the email within minutes, please look in SPAM and JUNK folders if you do not see it promptly.
-
-![image](https://github.com/jamesreinders/idc/assets/6556265/f260217f-c079-48fc-9e20-631bd71b3cc8)
-
-Enter the verification code in the field, as illustrated below and enter 'Create an account' button.
-
-![image](https://github.com/jamesreinders/idc/assets/6556265/a48bdd36-05ef-47ee-8d97-f4ca9d27f67d)
-
 <div id='put-key-in'/>
-Next, we proceed to https://scheduler.cloud.intel.com/#/systems to go to the cloud management console.
+It is useful to put in a key (not required).
 
-Here we need to make sure our SSH public key is in our profile.  Click the person/profile icon on the blue bar (NOT the one higher up on the same page).
-
-![image](https://github.com/bjodom/idc/blob/main/assets/profile.png)
-
+Visit <a href="https://console.cloud.intel.com/security/publickeys">console.cloud.intel.com/security/publickeys</a> and add a key.
 Paste in your public key
 
 ![image](https://github.com/jamesreinders/idc/assets/6556265/2add9951-5b84-4c57-99cd-046bf3ab0a37)
